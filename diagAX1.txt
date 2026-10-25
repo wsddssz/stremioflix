@@ -1,0 +1,15 @@
+﻿=== android dir files ===
+android_studio_script.rs  11651
+build.rs  9765
+check_java_gradle_versions.rs  6895
+dev.rs  12619
+mod.rs  44168
+project.rs  5904
+run.rs  5786
+=== mod.rs cargo_build / build targets ===
+android_studio_script.rs:30: num_args(0..),
+build.rs:46: num_args(0..),
+build.rs:51: #[clap(short, long, action = ArgAction::Append, num_args(0..), value_delimiter = ',')]
+dev.rs:47: #[clap(short, long, action = ArgAction::Append, num_args(0..), value_delimiter = ',')]
+dev.rs:95: #[clap(long, default_value_t, default_missing_value(""), num_args(0..=1))]
+run.rs:32: #[clap(short, long, action = ArgAction::Append, num_args(0..), value_delimiter = ',')]

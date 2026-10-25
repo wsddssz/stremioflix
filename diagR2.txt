@@ -1,0 +1,67 @@
+﻿=== android/mod.rs 160-180 (WRY_ANDROID_LIBRARY) ===
+    features: Some(android_options.features),
+    ..Default::default()
+  };
+
+  unsafe {
+    set_var(
+      "WRY_ANDROID_PACKAGE",
+      app.android_identifier_escape_kotlin_keyword(),
+    )
+  };
+  unsafe { set_var("TAURI_ANDROID_PACKAGE_UNESCAPED", app.identifier()) };
+  unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+  unsafe { set_var("TAURI_ANDROID_PROJECT_PATH", config.project_dir()) };
+
+  let src_main_dir = config
+    .project_dir()
+    .join("app/src/main")
+    .join(format!("java/{}", app.identifier().replace('.', "/"),));
+  if config.project_dir().exists() {
+    if src_main_dir.exists() {
+      let _ = create_dir(src_main_dir.join("generated"));
+    } else {
+      log::error!(
+        "Project directory {} does not exist. Did you update the package name in `Cargo.toml` or the bundle identifier in `tauri.conf.json > identifier`? Save your changes, delete the `gen/android` folder and run `tauri android init` to recreate the Android project.",
+        src_main_dir.display()
+=== android/mod.rs 605-640 (get_app) ===
+    .or_else(|| std::env::var_os("ANDROID_SDK_ROOT"))
+    .map(PathBuf::from);
+  if !android_home.as_ref().is_some_and(|v| v.exists()) {
+    log::info!(
+      "ANDROID_HOME {}, trying to locate Android SDK...",
+      if let Some(v) = &android_home {
+        format!("not found at {}", v.display())
+      } else {
+        "not set".into()
+      }
+    );
+
+    #[cfg(target_os = "macos")]
+    let default_android_home = dirs::home_dir().unwrap().join("Library/Android/sdk");
+    #[cfg(target_os = "linux")]
+    let default_android_home = dirs::home_dir().unwrap().join("Android/Sdk");
+    #[cfg(windows)]
+    let default_android_home = dirs::data_local_dir().unwrap().join("Android/Sdk");
+
+    if default_android_home.exists() {
+      log::info!(
+        "Using installed Android SDK: {}",
+        default_android_home.display()
+      );
+    } else if non_interactive {
+      crate::error::bail!(
+        "Android SDK not found. Make sure the SDK and NDK are installed and the ANDROID_HOME and NDK_HOME environment variables are set."
+      );
+    } else {
+      log::error!(
+        "Android SDK not found at {}",
+        default_android_home.display()
+      );
+
+      let extract_path = if create_dir_all(&default_android_home).is_ok() {
+        default_android_home.clone()
+      } else {
+        std::env::current_dir().context("failed to get current directory")?
+      };
+

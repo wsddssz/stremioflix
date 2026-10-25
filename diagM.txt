@@ -1,0 +1,42 @@
+﻿=== TauriActivity in tauri crate ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\androidTest\java\app\tauri\ExampleInstrumentedTest.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\AppPlugin.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\FsUtils.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\JniMethod.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\Logger.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\PathPlugin.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\PermissionHelper.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\PermissionState.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\ActivityCallback.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\InvokeArg.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\Permission.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\PermissionCallback.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\PluginMethod.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\annotation\TauriPlugin.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\Channel.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\InvalidPluginMethodException.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\Invoke.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\JSArray.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\JSObject.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\Plugin.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\PluginHandle.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\PluginManager.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\PluginMethodData.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\main\java\app\tauri\plugin\PluginResult.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android\src\test\java\app\tauri\ExampleUnitTest.kt
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-2.12.4\mobile\android-codegen\TauriActivity.kt
+=== loadLibrary refs ===
+=== cargo-mobile2 lib_name population ===
+config.rs:256: format!("lib{}.so", self.app().lib_name())
+cli.rs:524: config.app().lib_name()
+mod.rs:3: pub mod lib_name;
+mod.rs:36: #[error("app.lib_name invalid: {0}")]
+mod.rs:37: LibNameInvalid(lib_name::Invalid),
+mod.rs:68: lib_name: Option<String>,
+mod.rs:98: let lib_name = raw.lib_name;
+mod.rs:154: lib_name,
+mod.rs:204: pub fn lib_name(&self) -> String {
+mod.rs:205: self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+raw.rs:159: pub lib_name: Option<String>,
+raw.rs:171: lib_name: None,
+raw.rs:189: lib_name: None,

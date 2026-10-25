@@ -1,0 +1,13 @@
+﻿FILE: C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo-mobile2-0.22.5\src\config\app\mod.rs
+
+    pub fn lib_name(&self) -> String {
+        self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+        &self.stylized_name
+    }
+
+    pub fn identifier(&self) -> &str {
+        &self.identifier
+=== tauri-cli generates tauri.build.gradle.kts? ===

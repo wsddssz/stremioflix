@@ -1,0 +1,2 @@
+﻿C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\lib.rs:694: "cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME={}",
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\lib.rs:703: println!("cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX={android_package_prefix}");

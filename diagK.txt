@@ -1,0 +1,17 @@
+﻿=== files with tauri.settings.gradle ===
+=== android dirs ===
+adb
+emulator
+aab.rs
+apk.rs
+bundletool.rs
+cli.rs
+config.rs
+device.rs
+env.rs
+jnilibs.rs
+mod.rs
+ndk.rs
+project.rs
+source_props.rs
+target.rs

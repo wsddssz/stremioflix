@@ -1,0 +1,176 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --nf-black: #141414;
+  --nf-red: #e50914;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: #141414;
+  color: #e5e5e5;
+  font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom Netflix scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #141414;
+}
+::-webkit-scrollbar-thumb {
+  background: #4d4d4d;
+  border-radius: 6px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6d6d6d;
+}
+
+.nf-row-scroll::-webkit-scrollbar {
+  display: none;
+}
+.nf-row-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer utilities {
+  .text-shadow-lg {
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  }
+  .billboard-gradient {
+    background: linear-gradient(77deg, rgba(0, 0, 0, 0.7) 0%, transparent 85%);
+  }
+  .bottom-fade {
+    background-image: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(20, 20, 20, 0.35) 40%,
+      rgba(20, 20, 20, 0.9) 85%,
+      #141414 100%
+    );
+  }
+  .top-fade {
+    background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  }
+  .animate-fade-in {
+    animation: nfFadeIn 0.35s ease-out both;
+  }
+  .animate-scale-in {
+    animation: nfScaleIn 0.28s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  }
+  .animate-slide-up {
+    animation: nfSlideUp 0.4s ease-out both;
+  }
+}
+
+@keyframes nfFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes nfScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes nfSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Subtitle overlay cues */
+.nf-sub-cues {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 12%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  padding: 0 8%;
+  z-index: 20;
+}
+.nf-sub-cue {
+  background: rgba(0, 0, 0, 0.75);
+  color: var(--sub-color, #fff);
+  font-family: var(--sub-font, 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif);
+  font-size: calc(clamp(15px, 2.2vw, 24px) * var(--sub-scale, 1));
+  font-weight: 600;
+  line-height: 1.35;
+  padding: 4px 14px;
+  border-radius: 4px;
+  text-align: center;
+  max-width: 100%;
+}
+
+/* Desktop shell: while the embedded mpv surface plays behind WebView2, the
+   whole app must vanish (content hidden, backgrounds transparent) so the native
+   video shows through — only the player overlay stays on top. */
+html.native-mpv,
+html.native-mpv body,
+html.native-mpv #root,
+html.native-mpv .nf-app {
+  background: transparent !important;
+}
+html.native-mpv .nf-app > *:not(.nf-native-player) {
+  display: none !important;
+}
+
+/* Range inputs — Netflix red */
+input[type='range'].nf-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  outline: none;
+  cursor: pointer;
+}
+input[type='range'].nf-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e50914;
+  border: none;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+input[type='range'].nf-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #e50914;
+  border: none;
+}

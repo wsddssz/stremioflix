@@ -1,0 +1,2 @@
+﻿=== CARGO_TAURI_ANDROID_PROJECT_PATH ===
+=== Failed to run `cargo build` ===

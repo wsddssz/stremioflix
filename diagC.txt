@@ -1,0 +1,132 @@
+﻿=== 700..830 ===
+      }
+    }
+
+    unsafe { std::env::set_var("ANDROID_HOME", default_android_home) };
+  }
+
+  Ok(())
+}
+
+fn ensure_ndk(non_interactive: bool) -> Result<()> {
+  // re-evaluate ANDROID_HOME
+  let android_home = std::env::var_os("ANDROID_HOME")
+    .or_else(|| std::env::var_os("ANDROID_SDK_ROOT"))
+    .map(PathBuf::from)
+    .context("Failed to locate Android SDK")?;
+
+  // check NDK_HOME
+  let mut installed_ndks = if let Some(ndk_home) = std::env::var_os("NDK_HOME") {
+    let ndk_path = PathBuf::from(ndk_home);
+    if ndk_path.is_dir() {
+      vec![ndk_path]
+    } else {
+      crate::error::bail!(
+        "Android NDK invalid. Make sure the NDK_HOME environment variable has correct value."
+      );
+    }
+  } else {
+    read_dir(android_home.join("ndk"))
+      .map(|dir| {
+        dir
+          .into_iter()
+          .flat_map(|e| e.ok().map(|e| e.path()))
+          .collect::<Vec<_>>()
+      })
+      .unwrap_or_default()
+  };
+  installed_ndks.sort();
+
+  if let Some(ndk) = installed_ndks.last() {
+    log::info!("Using installed NDK: {}", ndk.display());
+    unsafe { std::env::set_var("NDK_HOME", ndk) };
+  } else if non_interactive {
+    crate::error::bail!(
+      "Android NDK not found. Make sure the NDK is installed and the NDK_HOME environment variable is set."
+    );
+  } else {
+    let sdk_manager_path = android_home
+      .join("cmdline-tools/bin/sdkmanager")
+      .with_extension(if cfg!(windows) { "bat" } else { "" });
+
+    let mut granted_permission_to_install = false;
+
+    if !sdk_manager_path.exists() {
+      granted_permission_to_install = crate::helpers::prompts::confirm(
+        "Do you want to install the Android Studio command line tools to setup the Android NDK?",
+        Some(false),
+      )
+      .unwrap_or_default();
+
+      if !granted_permission_to_install {
+        crate::error::bail!(
+          "Skipping Android Studio command line tools installation. Please go through the manual setup process described in the documentation: https://tauri.app/start/prerequisites/#android"
+        );
+      }
+
+      download_cmdline_tools(&android_home)?;
+    }
+
+    if !granted_permission_to_install {
+      granted_permission_to_install = crate::helpers::prompts::confirm(
+        "Do you want to install the Android NDK using the command line tools?",
+        Some(false),
+      )
+      .unwrap_or_default();
+
+      if !granted_permission_to_install {
+        crate::error::bail!(
+          "Skipping Android Studio NDK installation. Please go through the manual setup process described in the documentation: https://tauri.app/start/prerequisites/#android"
+        );
+      }
+    }
+
+    log::info!(
+      "Running sdkmanager to install ndk-{NDK_VERSION} on {}...",
+      android_home.display()
+    );
+    let status = Command::new(&sdk_manager_path)
+      .arg(format!("--sdk_root={}", android_home.display()))
+      .arg("--install")
+      .arg(format!("ndk;{NDK_VERSION}"))
+      .status()
+      .map_err(|error| Error::CommandFailed {
+        command: format!(
+          "{} --sdk_root={} --install ndk;{NDK_VERSION}",
+          sdk_manager_path.display(),
+          android_home.display()
+        ),
+        error,
+      })?;
+
+    if !status.success() {
+      crate::error::bail!("Failed to install Android NDK");
+    }
+
+    let ndk_path = android_home.join("ndk").join(NDK_VERSION);
+    log::info!("Installed NDK: {}", ndk_path.display());
+    unsafe { std::env::set_var("NDK_HOME", ndk_path) };
+  }
+
+  Ok(())
+}
+
+fn delete_codegen_vars() {
+  for (k, _) in std::env::vars() {
+    if k.starts_with("WRY_") && (k.ends_with("CLASS_EXTENSION") || k.ends_with("CLASS_INIT")) {
+      unsafe { std::env::remove_var(k) };
+    }
+  }
+}
+
+fn adb_device_prompt<'a>(env: &'_ Env, target: Option<&str>) -> Result<Device<'a>> {
+  let device_list = adb::device_list(env)
+    .context("failed to detect connected Android devices")?
+    .into_iter()
+    .filter(|d| d.status() == ConnectionStatus::Connected)
+    .collect::<Vec<_>>();
+  if !device_list.is_empty() {
+    let device = if let Some(t) = target {
+      let (device, score) = device_list
+        .into_iter()
+        .rev()

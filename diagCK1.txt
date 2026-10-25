@@ -1,0 +1,207 @@
+﻿=== git status ===
+fatal: not a git repository (or any of the parent directories): .git
+=== root dir listing ===
+android
+build-logs
+dist
+native
+node_modules
+scripts
+src
+src-tauri
+tools
+build_windows.log
+diag.txt
+diag10.txt
+diag11.txt
+diag12.txt
+diag13.txt
+diag14.txt
+diag3.txt
+diag4.txt
+diag5.txt
+diag6.txt
+diag7.txt
+diag8.txt
+diag9.txt
+diagA.txt
+diagAA1.txt
+diagAB1.txt
+diagAB2.txt
+diagAC1.txt
+diagAD1.txt
+diagAD2.txt
+diagAE1.txt
+diagAF1.txt
+diagAF2.txt
+diagAF3.txt
+diagAF4.txt
+diagAF5.txt
+diagAG1.txt
+diagAH1.txt
+diagAI1.txt
+diagAI2.txt
+diagAJ1.txt
+diagAK1.txt
+diagAL1.txt
+diagAM1.txt
+diagAN1.txt
+diagAO1.txt
+diagAO2.txt
+diagAP1.txt
+diagAQ1.txt
+diagAR1.txt
+diagAS1.txt
+diagAT1.txt
+diagAU1.txt
+diagAV1.txt
+diagAW1.txt
+diagAX1.txt
+diagAY1.txt
+diagAZ1.txt
+diagB.txt
+diagBA1.txt
+diagBB1.txt
+diagBC1.txt
+diagBD1.txt
+diagBE1.txt
+diagBF1.txt
+diagBG1.txt
+diagBH1.txt
+diagBI1.txt
+diagBJ1.txt
+diagBK1.txt
+diagBK2.txt
+diagBK3.txt
+diagBK4.txt
+diagBL1.txt
+diagBM1.txt
+diagBN1.txt
+diagBO1.txt
+diagBP1.txt
+diagBQ1.txt
+diagBR1.txt
+diagBS1.txt
+diagBT1.txt
+diagBU1.txt
+diagBV1.txt
+diagBW1.txt
+diagBX1.txt
+diagBY1.txt
+diagBZ1.txt
+diagC.txt
+diagCA1.txt
+diagCB1.txt
+diagCC1.txt
+diagCD1.txt
+diagCE1.txt
+diagCF1.txt
+diagCG1.txt
+diagCH1.txt
+diagCI1.txt
+diagCJ1.txt
+diagD.txt
+diagE.txt
+diagF.txt
+diagG.txt
+diagH.txt
+diagI.txt
+diagJ.txt
+diagK.txt
+diagL.txt
+diagLog.txt
+diagM.txt
+diagM1.txt
+diagM2.txt
+diagN.txt
+diagN1.txt
+diagN2.txt
+diagN3.txt
+diagO.txt
+diagP.txt
+diagP1.txt
+diagP2.txt
+diagQ.txt
+diagQ1.txt
+diagQ2.txt
+diagR.txt
+diagR1.txt
+diagR2.txt
+diagR3.txt
+diagS.txt
+diagS1.txt
+diagS2.txt
+diagT.txt
+diagT1.txt
+diagU.txt
+diagU1.txt
+diagV.txt
+diagV1.txt
+diagW.txt
+diagW1.txt
+diagW3.txt
+diagX.txt
+diagX1.txt
+diagY.txt
+diagY1.txt
+diagY2.txt
+diagZ1.txt
+diagZ2.txt
+diagZ3.txt
+diagZ4.txt
+diagZ5.txt
+diagZ6.txt
+fix_catalog.py
+fix_cats.py
+fix_cats2.py
+fix_cats3.py
+fix_cats4.py
+fix_cats5.py
+fix_netflix.py
+fix_settings_tail.py
+index.html
+libmpv-2.dll
+package-lock.json
+package.json
+postcss.config.js
+tailwind.config.js
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+=== package.json scripts ===
+{
+  "name": "stremioflix",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 5173",
+    "tauri": "tauri",
+    "tauri:build": "cargo tauri build",
+    "tauri:dev": "cargo tauri dev",
+    "tauri:build:windows": "cargo tauri build --target x86_64-pc-windows-msvc",
+    "tauri:build:android": "cargo tauri build --target aarch64-linux-android --target armv7-linux-androideabi --target x86_64-linux-android"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.1",
+    "@ffmpeg/util": "^0.12.1",
+    "hls.js": "^1.5.13",
+    "lucide-react": "^0.453.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tauri-apps/api": "^2.12.4"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.3",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
+  }
+}

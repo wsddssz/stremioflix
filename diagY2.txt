@@ -1,0 +1,112 @@
+﻿=== tauri-build lib.rs 650-720 ===
+}
+
+/// Same as [`build()`], but takes an extra configuration argument, and does not panic.
+#[allow(unused_variables)]
+pub fn try_build(attributes: Attributes) -> Result<()> {
+  use anyhow::anyhow;
+
+  println!("cargo:rerun-if-env-changed=TAURI_CONFIG");
+
+  let target_os = env::var_os("CARGO_CFG_TARGET_OS").unwrap();
+  let mobile = target_os == "ios" || target_os == "android";
+  cfg_alias("desktop", !mobile);
+  cfg_alias("mobile", mobile);
+
+  let target_triple = env::var("TARGET").unwrap();
+  let target = tauri_utils::platform::Target::from_triple(&target_triple);
+
+  let config_root = if let Some(config_path) = &attributes.config_path {
+    config_path.parent().with_context(|| {
+      format!(
+        "`config_path` '{}' doesn't have a parent directory",
+        config_path.display()
+      )
+    })?
+  } else {
+    &env::current_dir().unwrap()
+  };
+
+  let (mut config, config_paths) = tauri_utils::config::parse::read_from(target, config_root)?;
+
+  for config_file_path in config_paths {
+    println!("cargo:rerun-if-changed={}", config_file_path.display());
+  }
+  if let Ok(env) = env::var("TAURI_CONFIG") {
+    let merge_config: serde_json::Value = serde_json::from_str(&env)?;
+    json_patch::merge(&mut config, &merge_config);
+  }
+  let config: Config = serde_json::from_value(config)?;
+  let static_vc_runtime = should_static_link_vc_runtime(&config, &attributes);
+
+  let s = config.identifier.split('.');
+  let last = s.clone().count() - 1;
+  let mut android_package_prefix = String::new();
+  for (i, w) in s.enumerate() {
+    if i == last {
+      println!(
+        "cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME={}",
+        w.replace('-', "_")
+      );
+    } else {
+      android_package_prefix.push_str(&w.replace(['_', '-'], "_1"));
+      android_package_prefix.push('_');
+    }
+  }
+  android_package_prefix.pop();
+  println!("cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX={android_package_prefix}");
+
+  if let Some(project_dir) = env::var_os("TAURI_ANDROID_PROJECT_PATH").map(PathBuf::from) {
+    mobile::generate_gradle_files(project_dir)?;
+
+    // Update Android manifest with file associations
+    if let Some(associations) = config.bundle.file_associations.as_ref() {
+      mobile::update_android_manifest_file_associations(associations)?;
+    }
+  }
+
+  cfg_alias("dev", is_dev());
+
+  let cargo_toml_path = Path::new("Cargo.toml").canonicalize()?;
+  let mut manifest = Manifest::<cargo_toml::Value>::from_path_with_metadata(cargo_toml_path)?;
+
+  let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+
+  manifest::check(&config, &mut manifest)?;
+
+=== wry build.rs android_library_path ===
+  if target_os == "android" {
+    use std::{fs, path::PathBuf};
+
+    fn env_var(var: &str) -> String {
+      std::env::var(var).unwrap_or_else(|_| {
+        panic!("`{var}` is not set, which is needed to generate the kotlin files for android.")
+      })
+    }
+
+    println!("cargo:rerun-if-env-changed=WRY_ANDROID_PACKAGE");
+    println!("cargo:rerun-if-env-changed=WRY_ANDROID_LIBRARY");
+    println!("cargo:rerun-if-env-changed=WRY_ANDROID_KOTLIN_FILES_OUT_DIR");
+
+    if let Ok(kotlin_out_dir) = std::env::var("WRY_ANDROID_KOTLIN_FILES_OUT_DIR") {
+      let package = env_var("WRY_ANDROID_PACKAGE");
+      let library = env_var("WRY_ANDROID_LIBRARY");
+
+      let kotlin_out_dir = PathBuf::from(&kotlin_out_dir)
+        .canonicalize()
+        .unwrap_or_else(move |_| {
+          panic!("Failed to canonicalize `WRY_ANDROID_KOTLIN_FILES_OUT_DIR` path {kotlin_out_dir}")
+        });
+
+      let kotlin_files_path =
+        PathBuf::from(env_var("CARGO_MANIFEST_DIR")).join("src/android/kotlin");
+      println!("cargo:rerun-if-changed={}", kotlin_files_path.display());
+      let kotlin_files = fs::read_dir(kotlin_files_path).expect("failed to read kotlin directory");
+
+      for file in kotlin_files {
+        let file = file.unwrap();
+
+        let class_extension_env = format!(
+          "WRY_{}_CLASS_EXTENSION",
+          file
+            .path()

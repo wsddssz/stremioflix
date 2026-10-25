@@ -1,0 +1,2 @@
+﻿=== full grep of so_name in tauri-cli src ===
+android_studio_script.rs:152: .join(config.so_name());

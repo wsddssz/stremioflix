@@ -1,0 +1,2 @@
+﻿=== ensure_init / init ===
+543: pub fn env(non_interactive: bool) -> Result<Env> {

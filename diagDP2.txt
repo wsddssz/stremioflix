@@ -1,0 +1,15 @@
+﻿8: #[cfg(target_os = "android")]
+44: #[cfg(target_os = "android")]
+67: #[cfg(target_os = "android")]
+68: pub fn handle_android_plugin_response(
+112: #[cfg(target_os = "android")]
+206: /// Registers an Android plugin.
+207: #[cfg(target_os = "android")]
+208: pub fn register_android_plugin(
+228: "(Landroid/app/Activity;)V",
+248: "(Landroid/webkit/WebView;Ljava/lang/String;Lapp/tauri/plugin/Plugin;Ljava/lang/String;)V",
+268: .run_on_android_context(move |env, activity, webview| {
+299: // the closure is an FnOnce but on Android we need to clone it (error handling)
+309: // response arrives twice (the Android `run_command` keeps a clone of the
+448: #[cfg(target_os = "android")]
+513: handle.run_on_android_context(move |env, activity, _webview| {

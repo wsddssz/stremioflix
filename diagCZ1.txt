@@ -1,0 +1,81 @@
+﻿=== grep cargo build invocation ===
+dot_cargo.rs:52: pub struct DotCargoBuild {
+dot_cargo.rs:56: impl DotCargoBuild {
+dot_cargo.rs:79: build: Option<DotCargoBuild>,
+dot_cargo.rs:120: self.build = Some(DotCargoBuild::new(target));
+init.rs:124: let bike = config.build_a_bike();
+once_cell_regex.rs:18: ::regex::RegexBuilder::new($re)
+once_cell_regex.rs:20: .build()
+aab.rs:35: /// Builds AAB(s) and returns the built AAB(s) paths
+aab.rs:36: pub fn build(
+aab.rs:44: let build_ty = profile.as_str().to_upper_camel_case();
+aab.rs:49: .map(|t| format!("bundle{}{}", t.arch_upper_camel_case(), build_ty))
+aab.rs:52: let mut args = vec![format!("bundleUniversal{}", build_ty)];
+aab.rs:120: "app/build/outputs/bundle/{}{}/app-{}-{}.{}",
+aab.rs:132: pub fn build(
+aab.rs:141: "Building{} AAB{} for {} ...\n",
+aab.rs:151: let outputs = super::build(config, env, noise_level, profile, targets, split_per_abi)?;
+aab.rs:153: println!("\nFinished building AAB(s):");
+apk.rs:47: "app/build/outputs/apk/{}/{}/app-{}-{}.{}",
+apk.rs:59: /// Builds APK(s) and returns the built APK(s) paths
+apk.rs:60: pub fn build(
+apk.rs:70: let build_ty = profile.as_str().to_upper_camel_case();
+apk.rs:75: .map(|t| format!("assemble{}{}", t.arch_upper_camel_case(), build_ty))
+apk.rs:78: let mut args = vec![format!("assembleUniversal{}", build_ty)];
+apk.rs:154: pub fn build(
+apk.rs:163: "Building{} APK{} for {} ...\n",
+apk.rs:173: let outputs = super::build(config, env, noise_level, profile, targets, split_per_abi)?;
+apk.rs:175: println!("\nFinished building APK(s):");
+cli.rs:7: target::{BuildError, CompileLibError, Target},
+cli.rs:58: #[structopt(name = "build", about = "Builds dynamic libraries for target(s)")]
+cli.rs:59: Build {
+cli.rs:89: #[structopt(name = "apk", about = "Manage and build APKs")]
+cli.rs:94: #[structopt(name = "aab", about = "Manage and build AABs")]
+cli.rs:103: #[structopt(about = "build APKs (Android Package Kit)")]
+cli.rs:104: Build {
+cli.rs:106: /// Which targets to build (all by default).
+cli.rs:116: #[structopt(about = "build AABs (Android App Bundle)")]
+cli.rs:117: Build {
+cli.rs:119: /// Which targets to build (all by default).
+cli.rs:139: BuildFailed(BuildError),
+cli.rs:164: Self::BuildFailed(err) => err.report(),
+cli.rs:286: Command::Build {
+cli.rs:298: .build(config, metadata, env, noise_level, force_color, profile)
+cli.rs:299: .map_err(Error::BuildFailed)
+cli.rs:311: let build_app_bundle = metadata.asset_packs().is_some();
+cli.rs:321: build_app_bundle,
+cli.rs:359: ApkSubcommand::Build {
+cli.rs:366: apk::cli::build(
+cli.rs:378: AabSubcommand::Build {
+cli.rs:384: aab::cli::build(
+config.rs:256: format!("lib{}.so", self.app().lib_name())
+device.rs:23: pub enum ApksBuildError {
+device.rs:24: #[error("Failed to build APKS from AAB: {0}")]
+device.rs:25: BuildFromAabFailed(std::io::Error),
+device.rs:28: impl Reportable for ApksBuildError {
+device.rs:31: Self::BuildFromAabFailed(err) => Report::error("Failed to build APKS from AAB", err),
+device.rs:77: ApksFromAabBuildFailed(ApksBuildError),
+device.rs:93: Self::ApksFromAabBuildFailed(err) => err.report(),
+device.rs:197: "app/build/outputs/apk/{}/{}/app-{}-{}.{}",
+device.rs:236: fn build_apk(
+device.rs:243: apk::build(config, env, noise_level, profile, vec![self.target()], true)?;
+device.rs:281: fn build_aab(
+device.rs:288: aab::build(
+device.rs:299: fn build_apks_from_aab(&self, config: &Config, profile: Profile) -> Result<(), ApksBuildError> {
+device.rs:312: "build-apks",
+device.rs:320: .map_err(ApksBuildError::BuildFromAabFailed)?;
+device.rs:375: * is required for running different build variants (such as debug and release).
+device.rs:387: build_app_bundle: bool,
+device.rs:397: build_app_bundle,
+device.rs:412: build_app_bundle: bool,
+device.rs:417: if build_app_bundle {
+device.rs:419: self.build_aab(config, env, noise_level, profile)
+device.rs:421: self.build_apks_from_aab(config, profile)
+device.rs:422: .map_err(RunError::ApksFromAabBuildFailed)?;
+device.rs:429: self.build_apk(config, env, noise_level, profile)
+source_props.rs:43: // Referenced from `$NDK_HOME/build/cmake/android.toolchain.cmake`
+target.rs:24: Build,
+target.rs:31: CargoMode::Build => write!(f, "build"),
+target.rs:40: CargoMode::Build => "build",
+target.rs:47: #[error("Failed to locate required build tool: {0}")]
+target.rs:74: #[error("Library artifact not found at {path}. Make sure your Cargo.toml file has a [lib] block with `crate-type = [\"staticlib\", \"cdylib\", \"rlib\"]`")]

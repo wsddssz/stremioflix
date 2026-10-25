@@ -1,0 +1,12 @@
+﻿--- tauri-plugin-dialog-2.8.3 ---
+  android dir: True
+--- tauri-plugin-fs-2.7.1 ---
+  android dir: True
+--- tauri-plugin-shell-2.5.0 ---
+  android dir: True
+        let target_os = std::env::var("CARGO_CFG_TARGET_OS").unwrap();
+        let mobile = target_os == "ios" || target_os == "android";
+--- tauri-plugin-http-2.8.3 ---
+  android dir: False
+--- tauri-plugin-notification-2.7.0 ---
+  android dir: True

@@ -1,0 +1,22 @@
+﻿=== tauri-macros mobile_entry_point ===
+lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+=== tauri-build cfg mobile ===
+lib.rs:12: //! - defines the `dev`, `desktop` and `mobile` [cfg aliases] used across the Tauri crates;
+lib.rs:25: //! - on Android, generates the Gradle files of the mobile project and updates the Android
+lib.rs:116: mod mobile;
+lib.rs:659: let mobile = target_os == "ios" || target_os == "android";
+lib.rs:660: cfg_alias("desktop", !mobile);
+lib.rs:661: cfg_alias("mobile", mobile);
+lib.rs:707: mobile::generate_gradle_files(project_dir)?;
+lib.rs:711: mobile::update_android_manifest_file_associations(associations)?;
+lib.rs:12: //! - defines the `dev`, `desktop` and `mobile` [cfg aliases] used across the Tauri crates;
+lib.rs:25: //! - on Android, generates the Gradle files of the mobile project and updates the Android
+lib.rs:116: mod mobile;
+lib.rs:658: let mobile = target_os == "ios" || target_os == "android";
+lib.rs:659: cfg_alias("desktop", !mobile);
+lib.rs:660: cfg_alias("mobile", mobile);
+lib.rs:706: mobile::generate_gradle_files(project_dir)?;
+lib.rs:710: mobile::update_android_manifest_file_associations(associations)?;

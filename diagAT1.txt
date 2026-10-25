@@ -1,0 +1,22 @@
+﻿=== tauri-macros dirs ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.2
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.3
+=== tauri-cli-2.12.3 top ===
+scripts
+src
+templates
+tests
+.cargo-ok
+.cargo_vcs_info.json
+build.rs
+Cargo.lock
+Cargo.toml
+Cargo.toml.orig
+config.schema.json
+LICENSE-APACHE-2.0
+LICENSE-MIT
+metadata-v2.json
+metadata.json
+README.md
+tauri-dev-watcher.gitignore
+tauri.gitignore

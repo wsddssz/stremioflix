@@ -1,0 +1,4 @@
+﻿=== tauri mobile_entry_point ===
+lib.rs:88: pub use tauri_macros::mobile_entry_point;
+=== cargo-mobile2 lib_name ===
+mod.rs:204: pub fn lib_name(&self) -> String {

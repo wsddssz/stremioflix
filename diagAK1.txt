@@ -1,0 +1,8 @@
+﻿=== tauri::mobile_entry_point in 2.12.4 ===
+88: pub use tauri_macros::mobile_entry_point;
+=== tauri-macros mobile_entry_point ===
+lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+=== tao android loadLibrary ===
+dark_mode.rs:29: LazyLock::new(|| unsafe { LoadLibraryA(s!("uxtheme.dll")).unwrap_or_default().0 as _ });
+util.rs:256: let module = unsafe { LoadLibraryW(PCWSTR::from_raw(library.as_ptr())) }.unwrap_or_default();

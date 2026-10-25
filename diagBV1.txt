@@ -1,0 +1,54 @@
+﻿=== tauri-macros versions ===
+tauri-macros-2.7.2
+tauri-macros-2.7.3
+=== tauri-macros mobile_entry_point ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.2\src\lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.2\src\lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.3\src\lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.3\src\lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+=== tauri-cli rust.rs 1020-1060 ===
+  fn app_name(&self) -> Option<String> {
+    self
+      .manifest
+      .lock()
+      .unwrap()
+      .inner
+      .as_table()
+      .get("package")?
+      .as_table()?
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+  }
+
+  fn lib_name(&self) -> Option<String> {
+    self
+      .manifest
+      .lock()
+      .unwrap()
+      .inner
+      .as_table()
+      .get("lib")?
+      .as_table()?
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+  }
+}
+
+impl RustAppSettings {
+  pub fn new(
+    config: &Config,
+    manifest: Manifest,
+    target: Option<String>,
+    tauri_dir: &Path,
+  ) -> crate::Result<Self> {
+    let cargo_settings = CargoSettings::load(tauri_dir).context("failed to load Cargo settings")?;
+    let cargo_package_settings = match &cargo_settings.package {
+      Some(package_info) => package_info.clone(),
+      None => {
+        return Err(crate::Error::GenericError(
+          "No package info in the config file".to_owned(),
+        ));
+      }
+    };

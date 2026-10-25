@@ -1,0 +1,13 @@
+﻿=== android mod.rs cargo invocation ===
+android_studio_script.rs:152: .join(config.so_name());
+dev.rs:187: dev_options.args.push("--lib".into());
+mod.rs:170: unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+mod.rs:736: installed_ndks.sort();
+mod.rs:1283: jniLibs.keepDebugSymbols.add("*/arm64-v8a/*.so")
+=== android_project / cargo build args ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs:425: if mobile && !args.contains(&"--lib".into()) {
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs:426: args.push("--lib".into());
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs:483: if !args.contains(&"--lib".into()) {
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs:484: args.push("--lib".into());
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\mobile\android\dev.rs:187: dev_options.args.push("--lib".into());
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\mobile\ios\dev.rs:187: dev_options.args.push("--lib".into());

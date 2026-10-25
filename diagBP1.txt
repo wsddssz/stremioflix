@@ -1,0 +1,13 @@
+﻿=== cargo-mobile2 dirs ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo-mobile2-0.22.5
+=== android_binding in tauri-2.12.4 ===
+lib.rs:141: macro_rules! android_binding {
+lib.rs:148: ::tauri::wry::android_binding!($domain, $app_name, $wry);
+lib.rs:150: ::tauri::tao::android_binding!($domain, $app_name, Rust, android_setup, $main, ::tauri::tao);
+=== PluginManager_handlePluginResponse ===
+PluginManager.kt:200: handlePluginResponse(id, success, error)
+PluginManager.kt:238: private external fun handlePluginResponse(id: Int, success: String?, error: String?)
+lib.rs:152: // be careful when renaming this, the `Java_app_tauri_plugin_PluginManager_handlePluginResponse` symbol is checked by the CLI
+lib.rs:157: handlePluginResponse,
+lib.rs:168: // this function is a glue between PluginManager.kt > handlePluginResponse and Rust
+lib.rs:170: pub fn handlePluginResponse(

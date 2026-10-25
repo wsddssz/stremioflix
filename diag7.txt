@@ -1,0 +1,20 @@
+﻿FILE: C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\cargo-mobile2-0.22.5\src\android\config.rs
+    pub fn logcat_filter_specs(&self) -> &[String] {
+        &self.logcat_filter_specs
+    }
+
+    pub fn so_name(&self) -> String {
+        format!("lib{}.so", self.app().lib_name())
+    }
+
+    pub fn min_sdk_version(&self) -> u32 {
+        self.min_sdk_version
+    }
+
+    pub fn project_dir(&self) -> PathBuf {
+        self.app.prefix_path(&self.project_dir)
+    }
+
+    pub fn project_dir_exists(&self) -> bool {
+        self.project_dir().is_dir()
+    }

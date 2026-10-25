@@ -1,0 +1,2 @@
+﻿=== tauri-utils-2.10.1 so_name ===
+=== tauri-utils-2.10.2 so_name ===

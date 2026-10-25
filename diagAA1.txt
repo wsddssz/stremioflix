@@ -1,0 +1,111 @@
+﻿=== raw.rs detect/load: Cargo.toml name ===
+        let dir_name = dir_name
+            .to_str()
+            .ok_or_else(|| DefaultsError::CurrentDirInvalidUtf8(cwd.clone()))?;
+        let name = name::transliterate(&dir_name.to_kebab_case());
+        let dot_name = name
+            .as_ref()
+            .map(|n| format!(".{n}"))
+            .unwrap_or_default()
+            .replace("-", "_");
+        Ok(Self {
+            identifier: default_identifier(wrapper, &dot_name)
+                .ok()
+                .flatten()
+                .unwrap_or_else(|| format!("com.example{dot_name}")),
+            name,
+            stylized_name: dir_name.to_title_case(),
+        })
+    }
+}
+
+#[derive(Debug)]
+pub enum DetectError {
+    DefaultsFailed(DefaultsError),
+    NameNotDetected,
+}
+
+impl Display for DetectError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::DefaultsFailed(err) => write!(f, "Failed to detect default values: {err}"),
+            Self::NameNotDetected => write!(f, "No app name was detected."),
+        }
+    }
+}
+
+#[derive(Debug)]
+pub enum PromptError {
+    DefaultsFailed(DefaultsError),
+    NamePromptFailed(io::Error),
+    StylizedNamePromptFailed(io::Error),
+    IdentifierPromptFailed(io::Error),
+    ListTemplatePacksFailed(templating::ListError),
+    TemplatePackPromptFailed(io::Error),
+}
+
+impl Display for PromptError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        match self {
+            Self::DefaultsFailed(err) => write!(f, "Failed to detect default values: {err}"),
+            Self::NamePromptFailed(err) => write!(f, "Failed to prompt for name: {err}"),
+            Self::StylizedNamePromptFailed(err) => {
+                write!(f, "Failed to prompt for stylized name: {err}")
+            }
+            Self::IdentifierPromptFailed(err) => {
+                write!(f, "Failed to prompt for identifier: {err}")
+            }
+            Self::ListTemplatePacksFailed(err) => write!(f, "{err}"),
+            Self::TemplatePackPromptFailed(err) => {
+                write!(f, "Failed to prompt for template pack: {err}")
+            }
+        }
+    }
+}
+
+#[derive(Clone, Debug, Deserialize, Serialize)]
+#[serde(rename_all = "kebab-case")]
+pub struct Raw {
+    pub name: String,
+    pub lib_name: Option<String>,
+    pub stylized_name: Option<String>,
+    pub identifier: String,
+    pub asset_dir: Option<String>,
+    pub template_pack: Option<String>,
+}
+
+impl Raw {
+    pub fn detect(wrapper: &TextWrapper) -> Result<Self, DetectError> {
+        let defaults = Defaults::new(wrapper).map_err(DetectError::DefaultsFailed)?;
+        Ok(Self {
+            name: defaults.name.ok_or(DetectError::NameNotDetected)?,
+            lib_name: None,
+            stylized_name: Some(defaults.stylized_name),
+            identifier: defaults.identifier,
+            asset_dir: None,
+            template_pack: Some(super::DEFAULT_TEMPLATE_PACK.to_owned())
+                .filter(|pack| pack != super::IMPLIED_TEMPLATE_PACK),
+        })
+    }
+
+    pub fn prompt(wrapper: &TextWrapper) -> Result<Self, PromptError> {
+        let defaults = Defaults::new(wrapper).map_err(PromptError::DefaultsFailed)?;
+        let (name, default_stylized) = Self::prompt_name(&defaults)?;
+        let stylized_name = Self::prompt_stylized_name(&name, default_stylized)?;
+        let identifier = Self::prompt_identifier(wrapper, &defaults)?;
+        let template_pack = Some(Self::prompt_template_pack(wrapper)?)
+            .filter(|pack| pack != super::IMPLIED_TEMPLATE_PACK);
+        Ok(Self {
+            name,
+            lib_name: None,
+            stylized_name: Some(stylized_name),
+            identifier,
+            asset_dir: None,
+            template_pack,
+        })
+    }
+}
+
+impl Raw {
+    fn prompt_name(defaults: &Defaults) -> Result<(String, Option<String>), PromptError> {
+        let default_name = defaults.name.clone();

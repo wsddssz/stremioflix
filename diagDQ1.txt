@@ -1,0 +1,13 @@
+﻿137: #[cfg(all(feature = "wry", target_os = "android"))]
+138: #[cfg_attr(docsrs, doc(cfg(all(feature = "wry", target_os = "android"))))]
+141: macro_rules! android_binding {
+144: android_setup,
+148: ::tauri::wry::android_binding!($domain, $app_name, $wry);
+150: ::tauri::tao::android_binding!($domain, $app_name, Rust, android_setup, $main, ::tauri::tao);
+153: ::tauri::tao::platform::android::prelude::android_fn!(
+160: ::tauri::tao::platform::android::prelude::android_fn!(
+177: ::tauri::handle_android_plugin_response(&mut env, id, success, error);
+188: #[cfg(all(feature = "wry", target_os = "android"))]
+190: pub use plugin::mobile::{handle_android_plugin_response, send_channel_data};
+191: #[cfg(all(feature = "wry", target_os = "android"))]
+1092: #[cfg(target_os = "android")]

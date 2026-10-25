@@ -1,0 +1,10 @@
+﻿C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.2\src\mobile.rs:148: let gradle_settings_path = project_dir.join("tauri.settings.gradle");
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.2\src\mobile.rs:149: let app_build_gradle_path = project_dir.join("app").join("tauri.build.gradle.kts");
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.2\src\mobile.rs:192: .context("failed to write tauri.settings.gradle")?;
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.2\src\mobile.rs:195: .context("failed to write tauri.build.gradle.kts")?;
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\mobile.rs:148: let gradle_settings_path = project_dir.join("tauri.settings.gradle");
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\mobile.rs:149: let app_build_gradle_path = project_dir.join("app").join("tauri.build.gradle.kts");
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\mobile.rs:192: .context("failed to write tauri.settings.gradle")?;
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3\src\mobile.rs:195: .context("failed to write tauri.build.gradle.kts")?;
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\mobile\android\app\build.gradle.kts:91: apply(from = file("tauri.build.gradle.kts"))
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\mobile\android\settings.gradle:5: apply from: 'tauri.settings.gradle'

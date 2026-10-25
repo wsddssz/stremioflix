@@ -1,0 +1,274 @@
+﻿=== tauri-build lib.rs 640-715 ===
+        "found an unknown configuration field. This usually means that you are using a CLI version that is newer than `tauri-build` and is incompatible. "
+      );
+      println!(
+        "Please try updating the Rust crates by running `cargo update` in the Tauri app folder."
+      );
+    }
+    std::process::exit(1);
+  }
+}
+
+/// Same as [`build()`], but takes an extra configuration argument, and does not panic.
+#[allow(unused_variables)]
+pub fn try_build(attributes: Attributes) -> Result<()> {
+  use anyhow::anyhow;
+
+  println!("cargo:rerun-if-env-changed=TAURI_CONFIG");
+
+  let target_os = env::var_os("CARGO_CFG_TARGET_OS").unwrap();
+  let mobile = target_os == "ios" || target_os == "android";
+  cfg_alias("desktop", !mobile);
+  cfg_alias("mobile", mobile);
+
+  let target_triple = env::var("TARGET").unwrap();
+  let target = tauri_utils::platform::Target::from_triple(&target_triple);
+
+  let config_root = if let Some(config_path) = &attributes.config_path {
+    config_path.parent().with_context(|| {
+      format!(
+        "`config_path` '{}' doesn't have a parent directory",
+        config_path.display()
+      )
+    })?
+  } else {
+    &env::current_dir().unwrap()
+  };
+
+  let (mut config, config_paths) = tauri_utils::config::parse::read_from(target, config_root)?;
+
+  for config_file_path in config_paths {
+    println!("cargo:rerun-if-changed={}", config_file_path.display());
+  }
+  if let Ok(env) = env::var("TAURI_CONFIG") {
+    let merge_config: serde_json::Value = serde_json::from_str(&env)?;
+    json_patch::merge(&mut config, &merge_config);
+  }
+  let config: Config = serde_json::from_value(config)?;
+  let static_vc_runtime = should_static_link_vc_runtime(&config, &attributes);
+
+  let s = config.identifier.split('.');
+  let last = s.clone().count() - 1;
+  let mut android_package_prefix = String::new();
+  for (i, w) in s.enumerate() {
+    if i == last {
+      println!(
+        "cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME={}",
+        w.replace('-', "_")
+      );
+    } else {
+      android_package_prefix.push_str(&w.replace(['_', '-'], "_1"));
+      android_package_prefix.push('_');
+    }
+  }
+  android_package_prefix.pop();
+  println!("cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX={android_package_prefix}");
+
+  if let Some(project_dir) = env::var_os("TAURI_ANDROID_PROJECT_PATH").map(PathBuf::from) {
+    mobile::generate_gradle_files(project_dir)?;
+
+    // Update Android manifest with file associations
+    if let Some(associations) = config.bundle.file_associations.as_ref() {
+      mobile::update_android_manifest_file_associations(associations)?;
+    }
+  }
+
+  cfg_alias("dev", is_dev());
+
+  let cargo_toml_path = Path::new("Cargo.toml").canonicalize()?;
+  let mut manifest = Manifest::<cargo_toml::Value>::from_path_with_metadata(cargo_toml_path)?;
+
+  let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+=== android_binding in tauri (wry) ===
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\lib.rs
+//! 4. Your Rust app needs to call `wry::android_binding!` macro to setup the JNI functions that will be called by `WryActivity` and various other places.
+//!
+//! It is recommended to use the [`tao`](https://docs.rs/tao/latest/tao/) crate as it provides maximum compatibility with `wry`.
+//!
+//! ```
+//! #[cfg(target_os = "android")]
+//! {
+//!   tao::android_binding!(
+//!       com_example,
+//!       wry_app,
+//!       WryActivity,
+//!       wry::android_setup, // pass the wry::android_setup function to tao which will be invoked when the event loop is created
+//!       _start_app
+//!   );
+//!   wry::android_binding!(com_example, ttt);
+//! }
+//! ```
+//!
+//! If this feels overwhelming, you can just use the preconfigured template from [`cargo-mobile2`](https://github.com/tauri-apps/cargo-mobile2).
+//!
+//! For more information, check out [MOBILE.md](https://github.com/tauri-apps/wry/blob/dev/MOBILE.md).
+//!
+//! ## Feature flags
+//!
+//! Wry uses a set of feature flags to toggle several advanced features.
+//!
+//! - `os-webview` (default): Enables the default WebView framework on the platform. This must be enabled
+//!   for the crate to work. This feature was added in preparation of other ports like cef and servo.
+//! - `x11` (default): Enables x11 support and dependencies on Linux.
+//! - `serde`: Enables `dpi`'s `serde` feature.
+//! - `devtools`: Enables devtools on release builds. Devtools are always enabled in debug builds.
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\lib.rs
+//!   tao::android_binding!(
+//!       com_example,
+//!       wry_app,
+//!       WryActivity,
+//!       wry::android_setup, // pass the wry::android_setup function to tao which will be invoked when the event loop is created
+//!       _start_app
+//!   );
+//!   wry::android_binding!(com_example, ttt);
+//! }
+//! ```
+//!
+//! If this feels overwhelming, you can just use the preconfigured template from [`cargo-mobile2`](https://github.com/tauri-apps/cargo-mobile2).
+//!
+//! For more information, check out [MOBILE.md](https://github.com/tauri-apps/wry/blob/dev/MOBILE.md).
+//!
+//! ## Feature flags
+//!
+//! Wry uses a set of feature flags to toggle several advanced features.
+//!
+//! - `os-webview` (default): Enables the default WebView framework on the platform. This must be enabled
+//!   for the crate to work. This feature was added in preparation of other ports like cef and servo.
+//! - `x11` (default): Enables x11 support and dependencies on Linux.
+//! - `serde`: Enables `dpi`'s `serde` feature.
+//! - `devtools`: Enables devtools on release builds. Devtools are always enabled in debug builds.
+//!   On **macOS**, enabling devtools, requires calling private APIs so you should not enable this flag in release
+//!   build if your app needs to publish to App Store.
+//! - `mac-proxy`: Enables `WebViewBuilder::with_proxy_config` on macOS.
+//! - `linux-body`: Enables body support of custom protocol request on Linux. Requires
+//!   WebKit2GTK v2.40 or above.
+//! - `tracing`: enables [`tracing`] for `evaluate_script`, `ipc_handler`, and `custom_protocols`.
+//!
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\lib.rs
+//!   wry::android_binding!(com_example, ttt);
+//! }
+//! ```
+//!
+//! If this feels overwhelming, you can just use the preconfigured template from [`cargo-mobile2`](https://github.com/tauri-apps/cargo-mobile2).
+//!
+//! For more information, check out [MOBILE.md](https://github.com/tauri-apps/wry/blob/dev/MOBILE.md).
+//!
+//! ## Feature flags
+//!
+//! Wry uses a set of feature flags to toggle several advanced features.
+//!
+//! - `os-webview` (default): Enables the default WebView framework on the platform. This must be enabled
+//!   for the crate to work. This feature was added in preparation of other ports like cef and servo.
+//! - `x11` (default): Enables x11 support and dependencies on Linux.
+//! - `serde`: Enables `dpi`'s `serde` feature.
+//! - `devtools`: Enables devtools on release builds. Devtools are always enabled in debug builds.
+//!   On **macOS**, enabling devtools, requires calling private APIs so you should not enable this flag in release
+//!   build if your app needs to publish to App Store.
+//! - `mac-proxy`: Enables `WebViewBuilder::with_proxy_config` on macOS.
+//! - `linux-body`: Enables body support of custom protocol request on Linux. Requires
+//!   WebKit2GTK v2.40 or above.
+//! - `tracing`: enables [`tracing`] for `evaluate_script`, `ipc_handler`, and `custom_protocols`.
+//!
+//! ## Partners
+//!
+//! <table>
+//!   <tbody>
+//!     <tr>
+//!       <td align="center" valign="middle">
+//!         <a href="https://crabnebula.dev" target="_blank">
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\android\binding.rs
+macro_rules! android_binding {
+  ($domain:ident, $package:ident) => {
+    ::wry::android_binding!($domain, $package, ::wry)
+  };
+  // use imported `android_setup` just to force the import path to use `wry::{}`
+  // as the macro breaks without braces
+  ($domain:ident, $package:ident, $wry:path) => {{
+    use $wry::{android_setup as _, prelude::*};
+
+    android_fn!($domain, $package, Rust, onFirstActivityCreateWry, []);
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      onWebviewDestroy,
+      [JObject, JString]
+    );
+
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      handleRequest,
+      [JString, JObject, jboolean],
+      jobject
+    );
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      assetLoaderDomain,
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\android\binding.rs
+    ::wry::android_binding!($domain, $package, ::wry)
+  };
+  // use imported `android_setup` just to force the import path to use `wry::{}`
+  // as the macro breaks without braces
+  ($domain:ident, $package:ident, $wry:path) => {{
+    use $wry::{android_setup as _, prelude::*};
+
+    android_fn!($domain, $package, Rust, onFirstActivityCreateWry, []);
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      onWebviewDestroy,
+      [JObject, JString]
+    );
+
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      handleRequest,
+      [JString, JObject, jboolean],
+      jobject
+    );
+    android_fn!(
+      $domain,
+      $package,
+      Rust,
+      assetLoaderDomain,
+      [JString],
+      jstring
+FILE C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\android\mod.rs
+/// `tao::android_binding!($domain, $app_name, $activity, android_setup, $main)`
+/// to fill in `on_activity_create` which is run at the end of `onCreate` of an activiy
+pub unsafe fn android_setup(
+  package: &str,
+  mut env: JNIEnv,
+  _looper: &ThreadLooper,
+  activity: GlobalRef,
+) {
+  PACKAGE.get_or_init(|| package.to_string());
+
+  let vm = env.get_java_vm().unwrap();
+
+  let activity_id = env
+    .call_method(activity.as_obj(), "getId", "()I", &[])
+    .unwrap()
+    .i()
+    .unwrap();
+
+  let window_manager = env
+    .call_method(
+      &activity,
+      "getWindowManager",
+      "()Landroid/view/WindowManager;",
+      &[],
+    )
+    .unwrap()
+    .l()
+    .unwrap();
+  let window_manager = env.new_global_ref(window_manager).unwrap();
+
+  register_activity_proxy(vm, activity_id, activity, window_manager);

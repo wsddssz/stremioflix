@@ -1,0 +1,6 @@
+﻿Rust.kt:16: System.loadLibrary("{{library}}")
+util.rs:13: System::LibraryLoader::{GetProcAddress, LoadLibraryW},
+util.rs:26: let module = unsafe { LoadLibraryW(&library) }.unwrap_or_default();
+lib.rs:270: //!    - `WRY_ANDROID_LIBRARY`: for example, if your cargo project has a lib name `wry_app`, it will generate `libwry_app.so` so you set this env var to `wry_app`
+build.rs:36: println!("cargo:rerun-if-env-changed=WRY_ANDROID_LIBRARY");
+build.rs:41: let library = env_var("WRY_ANDROID_LIBRARY");

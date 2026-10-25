@@ -1,0 +1,46 @@
+﻿    pub fn generate_cargo_config(
+        &self,
+        config: &Config,
+        env: &Env,
+    ) -> Result<DotCargoTarget, ndk::MissingToolError> {
+        // Using clang as the linker seems to be the only way to get the right library search paths...
+        let linker = env
+            .ndk
+            .compiler_path(
+                ndk::Compiler::Clang,
+                self.clang_triple(),
+                config.min_sdk_version(),
+            )?
+            .display()
+            .to_string();
+        Ok(DotCargoTarget {
+            linker: Some(linker),
+            rustflags: vec![
+                "-Clink-arg=-landroid".to_owned(),
+                "-Clink-arg=-llog".to_owned(),
+                "-Clink-arg=-lOpenSLES".to_owned(),
+            ],
+        })
+    }
+
+    #[allow(clippy::too_many_arguments)]
+    fn compile_lib(
+        &self,
+        config: &Config,
+        metadata: &Metadata,
+        env: &Env,
+        noise_level: NoiseLevel,
+        force_color: bool,
+        profile: Profile,
+        mode: CargoMode,
+    ) -> Result<(), CompileLibError> {
+        let min_sdk_version = config.min_sdk_version();
+
+        // Force color, since gradle would otherwise give us uncolored output
+        // (which Android Studio makes red, which is extra gross!)
+        let color = if force_color { "always" } else { "auto" };
+        CargoCommand::new(mode.as_str())
+            .with_verbose(noise_level.pedantic())
+            .with_package(Some(config.app().name()))
+            .with_manifest_path(Some(config.app().manifest_path()))
+            .with_target(Some(self.triple))

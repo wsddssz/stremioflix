@@ -1,0 +1,4 @@
+﻿=== cargo-mobile2 android/mod.rs lib_name (200-215) ===
+
+
+=== tauri loadLibrary ===

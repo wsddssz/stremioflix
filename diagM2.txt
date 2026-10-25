@@ -1,0 +1,41 @@
+﻿=== jniLibs / .so naming in cargo-mobile2 ===
+apk.rs:7: use super::{config::Config, env::Env, jnilibs, target::Target};
+apk.rs:9: android::jnilibs::JniLibs,
+apk.rs:20: LibSymlinkCleaningFailed(jnilibs::RemoveBrokenLinksError),
+apk.rs:68: JniLibs::remove_broken_links(config).map_err(ApkError::LibSymlinkCleaningFailed)?;
+config.rs:256: format!("lib{}.so", self.app().lib_name())
+device.rs:1: use super::{aab, adb, bundletool, config::Config, env::Env, jnilibs, target::Target};
+device.rs:524: .unprefix_path(jnilibs::path(config, *self.target))
+device.rs:525: .expect("developer error: jnilibs subdir not prefixed");
+jnilibs.rs:15: #[error("Failed to list contents of jniLibs directory {dir}: {source}")]
+jnilibs.rs:20: #[error("Failed to get entry in jniLibs directory {dir}: {source}")]
+jnilibs.rs:36: format!("Failed to list contents of jniLibs directory {dir:?}"),
+jnilibs.rs:40: format!("Failed to get entry in jniLibs directory {dir:?}"),
+jnilibs.rs:67: format!("app/src/main/jniLibs/{}", &target.abi),
+jnilibs.rs:72: pub struct JniLibs {
+jnilibs.rs:76: impl JniLibs {
+jnilibs.rs:118: log::info!("symlinking lib {:?} in jniLibs dir {:?}", src, self.path);
+mod.rs:11: mod jnilibs;
+ndk.rs:252: static LIB: &str = "libc++_shared.so";
+target.rs:4: jnilibs::{self, JniLibs},
+target.rs:66: #[error("Failed to create \"jniLibs\" directory: {0}")]
+target.rs:67: JniLibsCreationFailed(io::Error),
+target.rs:69: SymlinkFailed(jnilibs::SymlinkLibError),
+target.rs:74: #[error("Library artifact not found at {path}. Make sure your Cargo.toml file has a [lib] block with `crate-type = [\"staticlib\", \"cdylib\", \"rlib\"]`")]
+target.rs:301: let jnilibs =
+target.rs:302: JniLibs::create(config, *self).map_err(SymlinkLibsError::JniLibsCreationFailed)?;
+target.rs:313: jnilibs
+target.rs:320: .contains("libc++_shared.so");
+target.rs:326: jnilibs
+cli.rs:219: Self::LibNotFound { path } => Report::error("Library artifact not found", format!("Library not found at {}. Make sure your Cargo.toml file has a [lib] block with `crate-type = [\"staticlib\", \"cdylib\", \"rlib\"]`", path.display())),
+cli.rs:524: config.app().lib_name()
+mod.rs:3: pub mod lib_name;
+mod.rs:36: #[error("app.lib_name invalid: {0}")]
+mod.rs:37: LibNameInvalid(lib_name::Invalid),
+mod.rs:68: lib_name: Option<String>,
+mod.rs:98: let lib_name = raw.lib_name;
+mod.rs:154: lib_name,
+mod.rs:204: pub fn lib_name(&self) -> String {
+mod.rs:205: self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+raw.rs:159: pub lib_name: Option<String>,
+raw.rs:171: lib_name: None,

@@ -1,0 +1,9 @@
+﻿lib.rs:141: macro_rules! android_binding {
+lib.rs:148: ::tauri::wry::android_binding!($domain, $app_name, $wry);
+lib.rs:150: ::tauri::tao::android_binding!($domain, $app_name, Rust, android_setup, $main, ::tauri::tao);
+=== macro def ===
+// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: MIT
+
+use crate::{

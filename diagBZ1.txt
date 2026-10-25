@@ -1,0 +1,8 @@
+﻿=== tauri-build: mobile cfg + env vars ===
+tauri-build dir: C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.3
+lib.rs:84: //! [cfg aliases]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-cfgkeyvalue
+lib.rs:307: println!("cargo:rustc-cfg={alias}");
+lib.rs:605: /// [cfg alias]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-cfgkeyvalue
+lib.rs:660: cfg_alias("mobile", mobile);
+lib.rs:694: "cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_APP_NAME={}",
+lib.rs:703: println!("cargo:rustc-env=TAURI_ANDROID_PACKAGE_NAME_PREFIX={android_package_prefix}");

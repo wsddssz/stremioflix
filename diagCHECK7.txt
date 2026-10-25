@@ -1,0 +1,23 @@
+﻿cargo :    Compiling stremioflix v1.0.0 (C:\Users\Kepdns\Desktop\stremioflix\src-tauri)
+At line:1 char:1
++ cargo check --target aarch64-linux-android --lib --manifest-path 'c:\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (   Compiling st...flix\src-tauri):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+warning: fields `url`, `title`, and `subs` are never read
+ --> src\lib.rs:6:5
+  |
+5 | struct PlayRequest {
+  |        ----------- fields in this struct
+6 |     url: String,
+  |     ^^^
+7 |     title: Option<String>,
+  |     ^^^^^
+8 |     subs: Option<String>,
+  |     ^^^^
+  |
+  = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: `stremioflix` (lib) generated 1 warning
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 1.55s

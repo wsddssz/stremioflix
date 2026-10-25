@@ -1,0 +1,159 @@
+﻿=== config/app/mod.rs: lib_name + name_snake ===
+            self.prefix_path(format!("{}/{}/{}", target, triple, profile.as_str()))
+        } else {
+            self.prefix_path(format!("target/{}/{}", triple, profile.as_str()))
+        }
+    }
+
+    pub fn prefix_path(&self, path: impl AsRef<Path>) -> PathBuf {
+        util::prefix_path(self.root_dir(), path)
+    }
+
+    pub fn unprefix_path(&self, path: impl AsRef<Path>) -> Result<PathBuf, util::PathNotPrefixed> {
+        util::unprefix_path(self.root_dir(), path)
+    }
+
+    pub fn name(&self) -> &str {
+        &self.name
+    }
+
+    pub fn name_snake(&self) -> String {
+        use heck::ToSnekCase as _;
+        self.name().to_snek_case()
+    }
+
+    pub fn lib_name(&self) -> String {
+        self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+        &self.stylized_name
+    }
+
+    pub fn identifier(&self) -> &str {
+        &self.identifier
+    }
+
+    pub fn android_identifier_escape_kotlin_keyword(&self) -> String {
+        self.identifier
+            .split('.')
+            .map(|s| {
+                if crate::reserved_names::KOTLIN_ONLY_KEYWORDS.contains(&s) {
+=== where lib_name is populated ===
+config.rs:256
+
+    pub fn so_name(&self) -> String {
+>> format!("lib{}.so", self.app().lib_name())
+    }
+
+    pub fn min_sdk_version(&self) -> u32 {
+        self.min_sdk_version
+---
+cli.rs:524
+                        "{rust_triple}/{}/lib{}.a",
+                        profile.as_str(),
+>> config.app().lib_name()
+                    );
+                    let lib_path = PathBuf::from(format!("../../target/{lib_location}"));
+
+                    if !lib_path.exists() {
+---
+mod.rs:3
+mod common_email_providers;
+pub mod identifier;
+>> pub mod lib_name;
+pub mod name;
+mod raw;
+
+pub use self::raw::*;
+---
+mod.rs:36
+    #[error("app.name invalid: {0}")]
+    NameInvalid(name::Invalid),
+>> #[error("app.lib_name invalid: {0}")]
+    LibNameInvalid(lib_name::Invalid),
+    #[error("`app.identifier` {identifier} isn't valid: {cause}")]
+    IdentifierInvalid {
+        identifier: String,
+---
+mod.rs:37
+    NameInvalid(name::Invalid),
+    #[error("app.lib_name invalid: {0}")]
+>> LibNameInvalid(lib_name::Invalid),
+    #[error("`app.identifier` {identifier} isn't valid: {cause}")]
+    IdentifierInvalid {
+        identifier: String,
+        cause: identifier::IdentifierError,
+---
+mod.rs:68
+    root_dir: PathBuf,
+    name: String,
+>> lib_name: Option<String>,
+    stylized_name: String,
+    identifier: String,
+    asset_dir: PathBuf,
+    #[serde(skip)]
+---
+mod.rs:98
+        let name = raw.name;
+
+>> let lib_name = raw.lib_name;
+
+        let stylized_name = raw.stylized_name.unwrap_or_else(|| name.clone());
+
+        let identifier = {
+---
+mod.rs:154
+            root_dir,
+            name,
+>> lib_name,
+            stylized_name,
+            identifier,
+            asset_dir,
+            template_pack,
+---
+mod.rs:204
+    }
+
+>> pub fn lib_name(&self) -> String {
+        self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+---
+mod.rs:205
+
+    pub fn lib_name(&self) -> String {
+>> self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+        &self.stylized_name
+---
+raw.rs:159
+pub struct Raw {
+    pub name: String,
+>> pub lib_name: Option<String>,
+    pub stylized_name: Option<String>,
+    pub identifier: String,
+    pub asset_dir: Option<String>,
+    pub template_pack: Option<String>,
+---
+raw.rs:171
+        Ok(Self {
+            name: defaults.name.ok_or(DetectError::NameNotDetected)?,
+>> lib_name: None,
+            stylized_name: Some(defaults.stylized_name),
+            identifier: defaults.identifier,
+            asset_dir: None,
+            template_pack: Some(super::DEFAULT_TEMPLATE_PACK.to_owned())
+---
+raw.rs:189
+        Ok(Self {
+            name,
+>> lib_name: None,
+            stylized_name: Some(stylized_name),
+            identifier,
+            asset_dir: None,
+            template_pack,
+---

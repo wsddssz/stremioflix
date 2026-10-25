@@ -1,0 +1,33 @@
+[package]
+name = "stremioflix"
+version = "1.0.0"
+description = "StremioFlix — Stremio powered streaming with a Netflix experience and native MKV playback."
+authors = ["StremioFlix"]
+edition = "2021"
+
+[dependencies]
+tauri = { version = "2", features = ["process-relaunch-dangerous-allow-symlink-macos"] }
+tauri-plugin-dialog = { version = "2" }
+tauri-plugin-fs = { version = "2" }
+tauri-plugin-shell = { version = "2" }
+tauri-plugin-http = { version = "2" }
+tauri-plugin-notification = { version = "2" }
+serde = { version = "1", features = ["derive"] }
+
+[target.'cfg(target_os = "android")'.dependencies]
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[profile.release]
+lto = true
+codegen-units = 1
+opt-level = "z"
+panic = "abort"
+
+[lib]
+name = "stremioflix"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[workspace]

@@ -1,0 +1,112 @@
+﻿=== rust.rs 400-500 ===
+    f(entry.file_type().unwrap(), dir.join(entry.path()));
+  }
+}
+
+fn dev_options(
+  mobile: bool,
+  args: &mut Vec<String>,
+  run_args: &mut Vec<String>,
+  features: &mut Vec<String>,
+  app_settings: &RustAppSettings,
+) {
+  let mut dev_args = Vec::new();
+  let mut reached_run_args = false;
+  for arg in args.clone() {
+    if reached_run_args {
+      run_args.push(arg);
+    } else if arg == "--" {
+      reached_run_args = true;
+    } else {
+      dev_args.push(arg);
+    }
+  }
+  *args = dev_args;
+
+  if mobile && !args.contains(&"--lib".into()) {
+    args.push("--lib".into());
+  }
+
+  if !args.contains(&"--no-default-features".into()) {
+    let manifest_features = app_settings.manifest.lock().unwrap().features();
+    let enable_features: Vec<String> = manifest_features
+      .get("default")
+      .cloned()
+      .unwrap_or_default()
+      .into_iter()
+      .filter(|feature| {
+        if let Some(manifest_feature) = manifest_features.get(feature) {
+          !manifest_feature.contains(&"tauri/custom-protocol".into())
+        } else {
+          feature != "tauri/custom-protocol"
+        }
+      })
+      .collect();
+    args.push("--no-default-features".into());
+    features.extend(enable_features);
+  }
+}
+
+fn get_watch_folders(
+  additional_watch_folders: &[PathBuf],
+  tauri_dir: &Path,
+) -> crate::Result<Vec<PathBuf>> {
+  // We always want to watch the main tauri folder.
+  let mut watch_folders = vec![tauri_dir.to_path_buf()];
+
+  watch_folders.extend(get_in_workspace_dependency_paths(tauri_dir)?);
+
+  // Add the additional watch folders, resolving the path from the tauri path if it is relative
+  watch_folders.extend(additional_watch_folders.iter().filter_map(|dir| {
+    let path = if dir.is_absolute() {
+      dir.to_owned()
+    } else {
+      tauri_dir.join(dir)
+    };
+
+    let canonicalized = canonicalize(&path).ok();
+    if canonicalized.is_none() {
+      log::warn!(
+        "Additional watch folder '{}' not found, ignoring",
+        path.display()
+      );
+    }
+    canonicalized
+  }));
+
+  Ok(watch_folders)
+}
+
+impl Rust {
+  pub fn build_options(&self, args: &mut Vec<String>, features: &mut Vec<String>, mobile: bool) {
+    features.push("tauri/custom-protocol".into());
+    if mobile {
+      if !args.contains(&"--lib".into()) {
+        args.push("--lib".into());
+      }
+    } else {
+      args.push("--bins".into());
+    }
+  }
+
+  fn run_dev<F: Fn(Option<i32>, ExitReason) + Send + Sync + 'static>(
+    &mut self,
+    options: Options,
+    run_args: &[String],
+    on_exit: F,
+  ) -> crate::Result<desktop::DevChild> {
+    desktop::run_dev(
+      options,
+      run_args,
+      &mut self.available_targets,
+      self.config_features.clone(),
+      on_exit,
+    )
+  }
+
+  fn run_dev_watcher<
+    F: Fn(&mut Rust, &ConfigMetadata) -> crate::Result<Box<dyn DevProcess + Send>>,
+  >(
+    &mut self,
+    config: &mut ConfigMetadata,
+=== lib_name / so_name in tauri-utils ===

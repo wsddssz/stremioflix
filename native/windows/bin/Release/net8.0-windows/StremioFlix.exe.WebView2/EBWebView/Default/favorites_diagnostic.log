@@ -1,0 +1,249 @@
+2026-10-15 18:18:26.141: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:18:26.141: [INFO] Profiles total count: 1
+2026-10-15 18:18:26.141: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=null
+2026-10-15 18:18:26.141: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:18:26.141: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 18:18:26.141: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 18:18:26.141: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 18:18:26.141: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:21:19.319: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:21:25.359: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:21:25.359: [INFO] Profiles total count: 1
+2026-10-15 18:21:25.360: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:21:18.048Z
+2026-10-15 18:21:25.360: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:21:25.360: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:21:18.048Z
+2026-10-15 18:21:25.360: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 18:21:25.360: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 18:21:25.360: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 18:21:25.360: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:21:37.456: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:24:55.727: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:24:55.728: [INFO] Profiles total count: 1
+2026-10-15 18:24:55.728: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:21:34.438Z
+2026-10-15 18:24:55.728: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:24:55.728: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:21:34.438Z
+2026-10-15 18:24:55.728: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 18:24:55.728: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 18:24:55.728: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 18:24:55.728: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:49:14.045: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 18:49:45.958: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:49:45.958: [INFO] Profiles total count: 1
+2026-10-15 18:49:45.958: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:38:05.803Z
+2026-10-15 18:49:45.958: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 18:49:45.958: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:38:05.803Z
+2026-10-15 18:49:45.958: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 18:49:45.958: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 18:49:45.958: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 18:49:45.958: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:12:26.625: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:12:27.617: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:12:27.617: [INFO] Profiles total count: 1
+2026-10-15 19:12:27.617: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:51:32.563Z
+2026-10-15 19:12:27.617: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:12:27.617: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T18:51:32.563Z
+2026-10-15 19:12:27.617: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 19:12:27.617: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 19:12:27.617: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 19:12:27.617: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:14:17.396: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:14:21.152: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:14:21.152: [INFO] Profiles total count: 1
+2026-10-15 19:14:21.152: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:14:15.892Z
+2026-10-15 19:14:21.152: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:14:21.152: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:14:15.892Z
+2026-10-15 19:14:21.153: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 19:14:21.153: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 19:14:21.153: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 19:14:21.153: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:20:25.696: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:20:57.582: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:20:57.582: [INFO] Profiles total count: 1
+2026-10-15 19:20:57.582: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:19:55.191Z
+2026-10-15 19:20:57.582: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 19:20:57.582: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:19:55.191Z
+2026-10-15 19:20:57.582: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 19:20:57.582: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 19:20:57.582: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 19:20:57.582: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 19:21:47.885: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:24:45.120: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:24:45.120: [INFO] Profiles total count: 1
+2026-10-15 20:24:45.121: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:20:57.644Z
+2026-10-15 20:24:45.121: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:24:45.121: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T19:20:57.644Z
+2026-10-15 20:24:45.121: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 20:24:45.121: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 20:24:45.121: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 20:24:45.121: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:33:04.763: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:33:05.761: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:33:05.761: [INFO] Profiles total count: 1
+2026-10-15 20:33:05.761: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:24:45.183Z
+2026-10-15 20:33:05.761: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:33:05.761: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:24:45.183Z
+2026-10-15 20:33:05.761: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 20:33:05.761: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 20:33:05.761: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 20:33:05.761: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:36:48.696: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:36:51.358: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:36:51.358: [INFO] Profiles total count: 1
+2026-10-15 20:36:51.358: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:36:45.059Z
+2026-10-15 20:36:51.358: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:36:51.358: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:36:45.059Z
+2026-10-15 20:36:51.358: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 20:36:51.358: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 20:36:51.358: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 20:36:51.358: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:39:00.874: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:42:42.283: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:42:42.283: [INFO] Profiles total count: 1
+2026-10-15 20:42:42.283: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:38:00.794Z
+2026-10-15 20:42:42.284: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 20:42:42.284: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:38:00.794Z
+2026-10-15 20:42:42.284: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 20:42:42.284: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 20:42:42.284: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 20:42:42.284: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 20:44:07.641: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 21:29:29.996: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 21:29:29.996: [INFO] Profiles total count: 1
+2026-10-15 21:29:29.996: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:44:07.044Z
+2026-10-15 21:29:29.996: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 21:29:29.996: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T20:44:07.044Z
+2026-10-15 21:29:29.996: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 21:29:29.996: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 21:29:29.996: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 21:29:29.996: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 21:30:34.024: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 21:43:37.825: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 21:43:37.825: [INFO] Profiles total count: 1
+2026-10-15 21:43:37.825: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T21:43:31.539Z
+2026-10-15 21:43:37.825: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-15 21:43:37.825: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T21:43:31.539Z
+2026-10-15 21:43:37.825: [INFO] OnDoneLoading sync enabled: 0
+2026-10-15 21:43:37.825: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-15 21:43:37.825: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-15 21:43:37.825: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-15 21:43:41.111: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 13:56:14.471: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 13:56:14.471: [INFO] Profiles total count: 1
+2026-10-16 13:56:14.472: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T21:43:37.888Z
+2026-10-16 13:56:14.472: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 13:56:14.472: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-15T21:43:37.888Z
+2026-10-16 13:56:14.472: [INFO] OnDoneLoading sync enabled: 0
+2026-10-16 13:56:14.472: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-16 13:56:14.472: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-16 13:56:14.472: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 13:56:20.086: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 14:19:58.684: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 14:19:58.684: [INFO] Profiles total count: 1
+2026-10-16 14:19:58.684: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T13:56:14.537Z
+2026-10-16 14:19:58.684: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 14:19:58.684: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T13:56:14.537Z
+2026-10-16 14:19:58.684: [INFO] OnDoneLoading sync enabled: 0
+2026-10-16 14:19:58.684: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-16 14:19:58.684: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-16 14:19:58.684: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 14:21:40.389: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 14:26:19.429: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 14:26:19.429: [INFO] Profiles total count: 1
+2026-10-16 14:26:19.429: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T14:21:00.050Z
+2026-10-16 14:26:19.429: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 14:26:19.429: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T14:21:00.050Z
+2026-10-16 14:26:19.429: [INFO] OnDoneLoading sync enabled: 0
+2026-10-16 14:26:19.429: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-16 14:26:19.429: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-16 14:26:19.429: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 14:37:32.914: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 15:25:54.295: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 15:25:54.295: [INFO] Profiles total count: 1
+2026-10-16 15:25:54.295: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T14:36:55.651Z
+2026-10-16 15:25:54.295: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-16 15:25:54.295: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T14:36:55.651Z
+2026-10-16 15:25:54.295: [INFO] OnDoneLoading sync enabled: 0
+2026-10-16 15:25:54.295: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-16 15:25:54.295: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-16 15:25:54.295: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-16 15:27:14.635: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 15:30:43.276: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 15:30:43.276: [INFO] Profiles total count: 1
+2026-10-18 15:30:43.277: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T15:26:08.581Z
+2026-10-18 15:30:43.277: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 15:30:43.277: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-16T15:26:08.581Z
+2026-10-18 15:30:43.277: [INFO] OnDoneLoading sync enabled: 0
+2026-10-18 15:30:43.277: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-18 15:30:43.277: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-18 15:30:43.277: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 16:13:44.334: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 17:22:18.787: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 17:22:18.787: [INFO] Profiles total count: 1
+2026-10-18 17:22:18.787: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T16:13:00.172Z
+2026-10-18 17:22:18.787: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 17:22:18.787: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T16:13:00.172Z
+2026-10-18 17:22:18.787: [INFO] OnDoneLoading sync enabled: 0
+2026-10-18 17:22:18.787: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-18 17:22:18.787: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-18 17:22:18.787: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 17:28:49.507: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 17:28:55.455: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 17:28:55.455: [INFO] Profiles total count: 1
+2026-10-18 17:28:55.456: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T17:28:47.429Z
+2026-10-18 17:28:55.456: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 17:28:55.456: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T17:28:47.429Z
+2026-10-18 17:28:55.456: [INFO] OnDoneLoading sync enabled: 0
+2026-10-18 17:28:55.456: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-18 17:28:55.456: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-18 17:28:55.456: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 17:32:21.665: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 19:43:30.912: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 19:43:30.912: [INFO] Profiles total count: 1
+2026-10-18 19:43:30.912: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T17:31:09.559Z
+2026-10-18 19:43:30.912: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-18 19:43:30.912: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T17:31:09.559Z
+2026-10-18 19:43:30.912: [INFO] OnDoneLoading sync enabled: 0
+2026-10-18 19:43:30.912: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-18 19:43:30.912: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-18 19:43:30.912: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-18 19:48:17.236: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 13:21:34.241: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 13:21:34.241: [INFO] Profiles total count: 1
+2026-10-19 13:21:34.241: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T19:47:47.358Z
+2026-10-19 13:21:34.241: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 13:21:34.241: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-18T19:47:47.358Z
+2026-10-19 13:21:34.241: [INFO] OnDoneLoading sync enabled: 0
+2026-10-19 13:21:34.241: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-19 13:21:34.241: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-19 13:21:34.241: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 13:40:10.629: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 15:22:30.295: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 15:22:30.295: [INFO] Profiles total count: 1
+2026-10-19 15:22:30.295: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T13:39:59.559Z
+2026-10-19 15:22:30.295: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 15:22:30.295: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T13:39:59.559Z
+2026-10-19 15:22:30.295: [INFO] OnDoneLoading sync enabled: 0
+2026-10-19 15:22:30.295: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-19 15:22:30.295: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-19 15:22:30.295: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 15:57:19.823: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 18:34:20.634: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 18:34:20.634: [INFO] Profiles total count: 1
+2026-10-19 18:34:20.634: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T15:23:01.253Z
+2026-10-19 18:34:20.634: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-19 18:34:20.634: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T15:23:01.253Z
+2026-10-19 18:34:20.634: [INFO] OnDoneLoading sync enabled: 0
+2026-10-19 18:34:20.634: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-19 18:34:20.634: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-19 18:34:20.634: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-19 18:38:57.738: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-23 12:16:11.331: [INFO] CurrentProfilePath: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-23 12:16:11.331: [INFO] Profiles total count: 1
+2026-10-23 12:16:11.331: [INFO] Profile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T18:38:23.539Z
+2026-10-23 12:16:11.331: [INFO] LastUsedProfileDir: C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default
+2026-10-23 12:16:11.331: [INFO] MostRecentlyActiveProfile: name=Profile 1 path=C:\Users\Kepdns\Desktop\stremioflix\native\windows\bin\Release\net8.0-windows\StremioFlix.exe.WebView2\EBWebView\Default lastActive=2026-10-19T18:38:23.539Z
+2026-10-23 12:16:11.331: [INFO] OnDoneLoading sync enabled: 0
+2026-10-23 12:16:11.331: [INFO] BookmarkModelLoaded, ids_reassigned: 0
+2026-10-23 12:16:11.331: [INFO] BookmarksLoadDropped droppedNodes=0
+2026-10-23 12:16:11.331: [INFO] BookmarksSnapshot Startup total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1
+2026-10-23 12:16:30.501: [INFO] BookmarksSnapshot Shutdown total=0 bar=0 other=0 mobile=0 showBar=0 showBarNTP=1

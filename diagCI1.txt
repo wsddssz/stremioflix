@@ -1,0 +1,52 @@
+﻿########## settings.gradle
+<= {{~#each asset-packs}}
+<= include ':{{this}}'{{/each}}
+<= 
+<= apply from: 'tauri.settings.gradle'
+########## build.gradle.kts
+<=         {{~#each android-project-dependencies}}
+<=         classpath("{{this}}"){{/each}}
+########## gradle.properties
+IDENTICAL
+########## app\build.gradle.kts
+=>     namespace = "com.stremioflix.app"
+=>         applicationId = "com.stremioflix.app"
+=>         minSdk = 24
+=>                 jniLibs.keepDebugSymbols.add("*/arm64-v8a/*.so")
+=>                 jniLibs.keepDebugSymbols.add("*/armeabi-v7a/*.so")
+=>                 jniLibs.keepDebugSymbols.add("*/x86/*.so")
+=>                 jniLibs.keepDebugSymbols.add("*/x86_64/*.so")
+=>     rootDirRel = "../../../"
+<=     {{~#each android-app-plugins}}
+<=     id("{{this}}"){{/each}}
+<=     namespace = "{{app.identifier}}"
+<=         applicationId = "{{app.identifier}}"
+<=         minSdk = {{android.min-sdk-version}}
+<=             {{#if android-debug-application-id-suffix}}
+<=             applicationIdSuffix = "{{android-debug-application-id-suffix}}"
+<=             {{/if}}
+<=                 {{#each abi-list}}
+<=                 jniLibs.keepDebugSymbols.add("*/{{this}}/*.so")
+<=                 {{/each}}
+<=     rootDirRel = "{{root-dir-rel}}"
+<=     {{~#each android-app-dependencies-platform}}
+<=     implementation(platform("{{this}}")){{/each}}
+<=     {{~#each android-app-dependencies}}
+<=     implementation("{{this}}"){{/each}}
+<= 
+<= apply(from = file("tauri.build.gradle.kts"))
+########## app\proguard-rules.pro
+IDENTICAL
+########## app\src\main\AndroidManifest.xml
+=>         android:theme="@style/Theme.stremioflix"
+<=         android:theme="@style/Theme.{{snake-case app.name}}"
+########## buildSrc\build.gradle.kts
+IDENTICAL
+########## buildSrc\src\main\kotlin\RustPlugin.kt
+MISSING IN GENERATED (template exists)
+########## buildSrc\src\main\kotlin\BuildTask.kt
+MISSING IN GENERATED (template exists)
+########## app\src\main\java\com\stremioflix\app\MainActivity.kt
+EXTRA IN GENERATED
+########## app\src\main\MainActivity.kt
+MISSING IN GENERATED (template exists)

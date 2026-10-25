@@ -1,0 +1,13 @@
+﻿=== tauri-cli: lib_name references ===
+mod.rs:41: fn lib_name(&self) -> Option<String>;
+rust.rs:1034: fn lib_name(&self) -> Option<String> {
+mod.rs:617: let lib_name = interface
+mod.rs:619: .lib_name()
+mod.rs:630: lib_name: Some(lib_name),
+mod.rs:170: unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+project.rs:70: config.project_dir().join(config.app().name_snake()),
+xcode_script.rs:272: let lib_path = out_dir.join(format!("lib{}.a", config.app().lib_name()));
+xcode_script.rs:303: format!("lib{}.a", config.app().lib_name())
+init.rs:273: "plugin_name_snake_case",
+init.rs:283: /// defaulting to `com.plugin.<plugin_name_snake_case>`.
+=== tauri-cli android mod.rs get_app ===

@@ -1,0 +1,5 @@
+﻿cargo-mobile2-0.22.5
+tauri-cli-2.12.3
+tauri-utils-2.10.1
+tauri-utils-2.10.2
+--- so_name defs ---

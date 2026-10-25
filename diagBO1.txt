@@ -1,0 +1,143 @@
+﻿=== android mod.rs init fn ===
+LINE 90: /// Configurations are merged in the order they are provided, which means a particular value overwrites previous values when a config key-value pair conflicts.
+  ///
+  /// Note that a platform-specific file is looked up and merged with the default file by default
+  /// (tauri.macos.conf.json, tauri.linux.conf.json, tauri.windows.conf.json, tauri.android.conf.json and tauri.ios.conf.json)
+  /// but you can use this for more specific use cases such as different build flavors.
+  #[clap(short, long)]
+  pub config: Vec<ConfigValue>,
+}
+
+#[derive(Subcommand)]
+enum Commands {
+  Init(InitOptions),
+  Dev(dev::Options),
+  Build(build::Options),
+  Run(run::Options),
+  #[clap(hide(true))]
+  AndroidStudioScript(android_studio_script::Options),
+}
+
+pub fn command(cli: Cli, verbosity: u8) -> Result<()> {
+  let noise_level = NoiseLevel::from_occurrences(verbosity as u64);
+=== android dir project.rs ===
+// Copyright 2019-2024 Tauri Programme within The Commons Conservancy
+// SPDX-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: MIT
+
+use crate::{
+  Error, Result,
+  error::{Context, ErrorExt},
+  helpers::template,
+};
+use cargo_mobile2::{
+  android::{
+    config::{Config, Metadata},
+    target::Target,
+  },
+  config::app::DEFAULT_ASSET_DIR,
+  os,
+  target::TargetTrait as _,
+  util::{
+    self,
+    cli::{Report, TextWrapper},
+    prefix_path,
+  },
+};
+use handlebars::Handlebars;
+use include_dir::{Dir, include_dir};
+
+use std::{
+  ffi::OsStr,
+  fs,
+  path::{Path, PathBuf},
+};
+
+const TEMPLATE_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/mobile/android");
+
+pub fn generate(
+  config: &Config,
+  metadata: &Metadata,
+  (handlebars, mut map): (Handlebars, template::JsonMap),
+  wrapper: &TextWrapper,
+  skip_targets_install: bool,
+) -> Result<()> {
+  if !skip_targets_install {
+    let installed_targets =
+      crate::interface::rust::installation::installed_targets().unwrap_or_default();
+    let missing_targets = Target::all()
+      .values()
+      .filter(|t| !installed_targets.contains(&t.triple().into()))
+      .collect::<Vec<&Target>>();
+
+    if !missing_targets.is_empty() {
+      log::info!("Installing Android Rust targets...");
+      for target in missing_targets {
+        log::info!("Installing target {}", target.triple());
+        target.install().map_err(|error| Error::CommandFailed {
+          command: "rustup target add".to_string(),
+          error,
+        })?;
+      }
+    }
+  }
+  println!("Generating Android Studio project...");
+  let dest = config.project_dir();
+  let asset_packs = metadata.asset_packs().unwrap_or_default();
+
+  map.insert(
+    "root-dir-rel",
+    Path::new(&os::replace_path_separator(
+      util::relativize_path(
+        config.app().root_dir(),
+        config.project_dir().join(config.app().name_snake()),
+      )
+      .into_os_string(),
+    )),
+  );
+  map.insert("root-dir", config.app().root_dir());
+  map.insert(
+    "abi-list",
+    Target::all()
+      .values()
+      .map(|target| target.abi)
+      .collect::<Vec<_>>(),
+  );
+  map.insert("target-list", Target::all().keys().collect::<Vec<_>>());
+  map.insert(
+    "arch-list",
+    Target::all()
+      .values()
+      .map(|target| target.arch)
+      .collect::<Vec<_>>(),
+  );
+  map.insert("android-app-plugins", metadata.app_plugins());
+  map.insert(
+    "android-project-dependencies",
+    metadata.project_dependencies(),
+  );
+  map.insert("android-app-dependencies", metadata.app_dependencies());
+  map.insert(
+    "android-app-dependencies-platform",
+    metadata.app_dependencies_platform(),
+  );
+  map.insert(
+    "has-code",
+    metadata.project_dependencies().is_some()
+      || metadata.app_dependencies().is_some()
+      || metadata.app_dependencies_platform().is_some(),
+  );
+  map.insert("has-asset-packs", !asset_packs.is_empty());
+  map.insert(
+    "asset-packs",
+    asset_packs
+      .iter()
+      .map(|p| p.name.as_str())
+      .collect::<Vec<_>>(),
+  );
+  map.insert("windows", cfg!(windows));
+
+  let identifier = config.app().identifier().replace('.', "/");
+  let package_path = format!("java/{identifier}");
+
+  map.insert("package-path", &package_path);

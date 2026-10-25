@@ -1,0 +1,41 @@
+﻿=== tauri-cli: check jni symbol / lib validation ===
+completions.rs:128: .filter(|line| line.trim_start().starts_with("complete "))
+completions.rs:134: .trim_start()
+pbxproj.rs:441: .skip_while(|l| !l.trim_start().starts_with(build_configuration_id))
+frontend.rs:171: for (source_type, js_source, script_start) in sources {
+frontend.rs:197: script_start + stmt.source.span.start as i64 + 1,
+frontend.rs:198: script_start + stmt.source.span.end as i64 - 1,
+frontend.rs:285: script_start + specifier.span.start as i64,
+frontend.rs:286: script_start + specifier.span.end as i64,
+frontend.rs:311: .remove(script_start + start as i64, script_start + end as i64)
+frontend.rs:340: .append_right(script_start as u32 + start, &import)
+frontend.rs:348: .append_right(script_start as u32 + start, stmt)
+mod.rs:14: const SCRIPT_START: &str = "<script";
+svelte.rs:10: use super::{JavaScriptSource, SCRIPT_END, SCRIPT_START, find_script_closing_angle};
+svelte.rs:28: let script_start_finder = Finder::new(SCRIPT_START);
+svelte.rs:34: let offset = script_start_finder.find(&self.source_text.as_bytes()[pointer..])?;
+svelte.rs:35: pointer += offset + SCRIPT_START.len();
+svelte.rs:45: let js_start = pointer;
+svelte.rs:51: let source_text = &self.source_text[js_start..js_end];
+svelte.rs:55: Some(JavaScriptSource::new(source_text, source_type, js_start))
+vue.rs:10: use super::{JavaScriptSource, SCRIPT_END, SCRIPT_START, find_script_closing_angle};
+vue.rs:41: let script_start_finder = Finder::new(SCRIPT_START);
+vue.rs:45: let offset = script_start_finder.find(&self.source_text.as_bytes()[*pointer..])?;
+vue.rs:46: *pointer += offset + SCRIPT_START.len();
+vue.rs:57: let js_start = *pointer;
+vue.rs:64: let source_text = &self.source_text[js_start..js_end];
+vue.rs:69: Some(JavaScriptSource::new(source_text, source_type, js_start))
+mod.rs:676: let java_folder = project_dir
+mod.rs:679: if java_folder.exists() {
+android_studio_script.rs:179: if !symbols.contains(&"Java_app_tauri_plugin_PluginManager_handlePluginResponse") {
+check_java_gradle_versions.rs:9: pub fn check_java_gradle_versions() -> Option<()> {
+check_java_gradle_versions.rs:10: let java_major_version = java_major_version()?;
+check_java_gradle_versions.rs:15: if java_major_version > gradle_max_supported_java {
+check_java_gradle_versions.rs:17: "Detected Java {java_major_version}, but Gradle {project_gradle_version} used by this project can only run on Java up to {gradle_max_supported_java}. \
+check_java_gradle_versions.rs:19: (Java {gradle_max_supported_java} or older) and point JAVA_HOME at it. \
+check_java_gradle_versions.rs:74: /// `JAVA_HOME` and falling back to the `java` binary on `PATH`. This avoids
+check_java_gradle_versions.rs:76: fn java_major_version() -> Option<u32> {
+check_java_gradle_versions.rs:77: let release = std::fs::read_to_string(java_home_dir()?.join("release")).ok()?;
+check_java_gradle_versions.rs:80: .find_map(|line| line.strip_prefix("JAVA_VERSION="))
+check_java_gradle_versions.rs:81: .and_then(parse_java_major)
+check_java_gradle_versions.rs:84: /// Resolves the active JDK home directory, preferring `JAVA_HOME` and otherwise

@@ -1,0 +1,5 @@
+﻿=== so_name in config.rs ===
+4105: pub main_binary_name: Option<String>,
+4981: let main_binary_name = opt_str_lit(self.main_binary_name.as_ref());
+4994: main_binary_name,
+=== so_name impl context ===

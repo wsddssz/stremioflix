@@ -1,0 +1,14 @@
+﻿    #[error("Failed to locate \"libc++_shared.so\": {0}")]
+    LibcxxSharedPathFailed(ndk::MissingToolError),
+>> 74: #[error("Library artifact not found at {path}. Make sure your Cargo.toml file has a [lib] block with `crate-type = [\"staticlib\", \"cdylib\", \"rlib\"]`")]
+    LibNotFound { path: PathBuf },
+}
+
+impl Reportable for SymlinkLibsError {
+    fn report(&self) -> Report {
+        Report::error("Failed to symlink lib", self)
+    }
+}
+
+#[derive(Debug, Error)]
+---

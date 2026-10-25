@@ -1,0 +1,24 @@
+﻿=== dirs matching wry-* ===
+wry-0.57.0
+=== tauri-cli lib_name fn ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+  }
+
+  fn lib_name(&self) -> Option<String> {
+    self
+      .manifest
+      .lock()
+      .unwrap()
+      .inner
+      .as_table()
+      .get("lib")?
+      .as_table()?
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+  }
+}
+

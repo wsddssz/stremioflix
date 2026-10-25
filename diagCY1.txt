@@ -1,0 +1,15 @@
+﻿config.rs:255: pub fn so_name(&self) -> String {
+config.rs:256: format!("lib{}.so", self.app().lib_name())
+target.rs:307: .join(config.so_name());
+cli.rs:524: config.app().lib_name()
+mod.rs:3: pub mod lib_name;
+mod.rs:36: #[error("app.lib_name invalid: {0}")]
+mod.rs:37: LibNameInvalid(lib_name::Invalid),
+mod.rs:68: lib_name: Option<String>,
+mod.rs:98: let lib_name = raw.lib_name;
+mod.rs:154: lib_name,
+mod.rs:204: pub fn lib_name(&self) -> String {
+mod.rs:205: self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+raw.rs:159: pub lib_name: Option<String>,
+raw.rs:171: lib_name: None,
+raw.rs:189: lib_name: None,

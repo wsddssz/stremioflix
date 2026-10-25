@@ -1,0 +1,5 @@
+﻿1: // Copyright 2019-2024 Tauri Programme within The Commons Conservancy
+170: unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+736: installed_ndks.sort();
+1120: crate::helpers::fs::copy_file(resource.path(), dest).context("failed to copy resource")?;
+1283: jniLibs.keepDebugSymbols.add("*/arm64-v8a/*.so")

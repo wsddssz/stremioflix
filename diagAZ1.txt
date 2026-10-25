@@ -1,0 +1,4 @@
+﻿=== tauri-utils dirs ===
+tauri-utils-2.10.1
+tauri-utils-2.10.2
+=== lib_name/so_name impl ===

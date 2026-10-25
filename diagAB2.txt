@@ -1,0 +1,29 @@
+﻿=== cargo-mobile2 config file_name ===
+pub fn file_name() -> String {
+    format!("{}.toml", crate::NAME)
+}
+
+#[derive(Debug, Error)]
+pub enum FromRawError {
+    #[error(transparent)]
+=== tauri-cli: cargo_mobile / mobile config write ===
+ios.rs:11: let teams = cargo_mobile2::apple::teams::find_development_teams().unwrap_or_default();
+init.rs:12: use cargo_mobile2::{
+mod.rs:20: use cargo_mobile2::{
+mod.rs:48: use cargo_mobile2::env::Env;
+mod.rs:50: use cargo_mobile2::os::Env;
+android_studio_script.rs:15: use cargo_mobile2::{
+android_studio_script.rs:191: env: &cargo_mobile2::android::env::Env,
+android_studio_script.rs:333: env: &cargo_mobile2::android::env::Env,
+android_studio_script.rs:346: env: &cargo_mobile2::android::env::Env,
+android_studio_script.rs:357: env: &cargo_mobile2::android::env::Env,
+build.rs:23: use cargo_mobile2::{
+dev.rs:26: use cargo_mobile2::{
+mod.rs:5: use cargo_mobile2::{
+mod.rs:546: cargo_mobile2::android::env::Env::from_env(env).context("failed to load Android environment")
+project.rs:10: use cargo_mobile2::{
+run.rs:5: use cargo_mobile2::{
+build.rs:25: use cargo_mobile2::{
+build.rs:647: fn auth_credentials_from_env() -> Result<Option<cargo_mobile2::apple::AuthCredentials>> {
+build.rs:654: Ok(Some(cargo_mobile2::apple::AuthCredentials {
+dev.rs:27: use cargo_mobile2::{

@@ -1,0 +1,35 @@
+﻿=== find manifest.rs with CRATE_TYPES ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\migrate\migrations\v1\manifest.rs
+=== tauri-cli src tree ===
+\acl
+\dev
+\helpers
+\info
+\interface
+\migrate
+\mobile
+\plugin
+\signer
+\acl\capability
+\acl\permission
+\interface\rust
+\migrate\migrations
+\migrate\migrations\v1
+\migrate\migrations\v1\fixtures
+\migrate\migrations\v1\frontend
+\migrate\migrations\v1\frontend\partial_loader
+\mobile\android
+\mobile\ios

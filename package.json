@@ -1,0 +1,36 @@
+{
+  "name": "stremioflix",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173",
+    "build": "tsc && vite build",
+    "preview": "vite preview --port 5173",
+    "tauri": "tauri",
+    "tauri:build": "cargo tauri build",
+    "tauri:dev": "cargo tauri dev",
+    "tauri:build:windows": "cargo tauri build --target x86_64-pc-windows-msvc",
+    "tauri:build:android": "cargo tauri build --target aarch64-linux-android --target armv7-linux-androideabi --target x86_64-linux-android"
+  },
+  "dependencies": {
+    "@ffmpeg/ffmpeg": "^0.12.1",
+    "@ffmpeg/util": "^0.12.1",
+    "hls.js": "^1.5.13",
+    "lucide-react": "^0.453.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tauri-apps/api": "^2.12.4"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.12.3",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13",
+    "typescript": "^5.6.2",
+    "vite": "^5.4.8"
+  }
+}

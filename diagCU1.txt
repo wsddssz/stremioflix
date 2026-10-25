@@ -1,0 +1,13 @@
+﻿=== project.rs (grep) ===
+8: helpers::template,
+33: const TEMPLATE_DIR: Dir<'_> = include_dir!("$CARGO_MANIFEST_DIR/templates/mobile/android");
+35: pub fn generate(
+38: (handlebars, mut map): (Handlebars, template::JsonMap),
+123: template::render_with_generator(
+126: &TEMPLATE_DIR,
+130: .with_context(|| "failed to process template")?;
+150: fs::create_dir_all(&dest).fs_context("failed to create directory", dest.clone())?;
+154: fs::create_dir_all(&asset_dir).fs_context("failed to create asset dir", asset_dir)?;
+160: fn generate_out_file(
+189: fs::create_dir_all(&parent)?;
+204: } else if !path.exists() {

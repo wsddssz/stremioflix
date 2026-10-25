@@ -1,0 +1,30 @@
+# Dependințe JavaScript (Foarte Important!)
+node_modules/
+.pnpm-store/
+
+# Construcție și compilare Rust / Tauri
+src-tauri/target/
+
+# Fișiere binare și librării compilate
+*.dll
+*.exe
+*.dylib
+*.so
+
+# Unelte de construcție și arhive
+tools/
+*.zip
+*.tar.gz
+
+# Configurații locale și fișiere secrete (Environment Variables)
+.env
+.env.local
+.env.*.local
+
+# Configurații pentru editoare de cod (VS Code, WebStorm)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln

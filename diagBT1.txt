@@ -1,0 +1,111 @@
+﻿=== tauri-cli android build.rs: project generate ===
+  ///
+  /// Note that a platform-specific file is looked up and merged with the default file by default
+  /// (tauri.macos.conf.json, tauri.linux.conf.json, tauri.windows.conf.json, tauri.android.conf.json and tauri.ios.conf.json)
+  /// but you can use this for more specific use cases such as different build flavors.
+  #[clap(short, long)]
+  pub config: Vec<ConfigValue>,
+  /// Whether to split the APKs and AABs per ABIs.
+  #[clap(long)]
+  pub split_per_abi: bool,
+  /// Build APKs.
+  #[clap(long)]
+  pub apk: bool,
+  /// Build AABs.
+  #[clap(long)]
+  pub aab: bool,
+  #[clap(skip)]
+  pub skip_bundle: bool,
+  /// Open Android Studio
+  #[clap(short, long)]
+  pub open: bool,
+  /// Skip prompting for values
+  #[clap(long, env = "CI")]
+  pub ci: bool,
+  /// Command line arguments passed to the runner.
+  /// Use `--` to explicitly mark the start of the arguments.
+  /// e.g. `tauri android build -- [runnerArgs]`.
+  #[clap(last(true))]
+  pub args: Vec<String>,
+  /// Do not error out if a version mismatch is detected on a Tauri package.
+  ///
+  /// Only use this when you are sure the mismatch is incorrectly detected as version mismatched Tauri packages can lead to unknown behavior.
+  #[clap(long)]
+  pub ignore_version_mismatches: bool,
+  /// Target device of this build
+  #[clap(skip)]
+  pub target_device: Option<TargetDevice>,
+}
+
+impl From<Options> for BuildOptions {
+  fn from(options: Options) -> Self {
+    Self {
+      runner: None,
+      debug: options.debug,
+      target: None,
+      features: options.features,
+      bundles: None,
+      no_bundle: false,
+      config: options.config,
+      args: options.args,
+      ci: options.ci,
+      skip_stapling: false,
+      ignore_version_mismatches: options.ignore_version_mismatches,
+      no_sign: false,
+      no_binary_patching: false,
+    }
+  }
+}
+
+pub struct BuiltApplication {
+  pub config: AndroidConfig,
+  pub interface: AppInterface,
+  // prevent drop
+  #[allow(dead_code)]
+  options_handle: OptionsHandle,
+}
+
+pub fn command(options: Options, noise_level: NoiseLevel) -> Result<BuiltApplication> {
+  let dirs = crate::helpers::app_paths::resolve_dirs();
+  let tauri_config = get_tauri_config(
+    tauri_utils::platform::Target::Android,
+    &options
+      .config
+      .iter()
+      .map(|conf| &conf.0)
+      .collect::<Vec<_>>(),
+    dirs.tauri,
+  )?;
+  run(options, noise_level, &dirs, &tauri_config)
+}
+
+pub fn run(
+  options: Options,
+  noise_level: NoiseLevel,
+  dirs: &Dirs,
+  tauri_config: &ConfigMetadata,
+) -> Result<BuiltApplication> {
+  delete_codegen_vars();
+
+  let mut build_options: BuildOptions = options.clone().into();
+
+  let first_target = Target::all()
+    .get(
+      options
+        .targets
+        .as_ref()
+        .and_then(|l| l.first().map(|t| t.as_str()))
+        .unwrap_or(Target::DEFAULT_KEY),
+    )
+    .unwrap();
+  build_options.target = Some(first_target.triple.into());
+
+  let interface = AppInterface::new(tauri_config, build_options.target.clone(), dirs.tauri)?;
+  interface.build_options(&mut build_options.args, &mut build_options.features, true);
+
+  let app = get_app(MobileTarget::Android, tauri_config, &interface, dirs.tauri);
+  let (config, metadata) = get_config(
+    &app,
+    tauri_config,
+    &build_options.features,
+    &CliOptions {

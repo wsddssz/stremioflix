@@ -1,0 +1,10 @@
+﻿=== tauri-cli templates lib.rs / main.rs ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\app\src-tauri\src\lib.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\app\src-tauri\src\main.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\src\lib.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-api\tauri-app\src-tauri\src\lib.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-api\tauri-app\src-tauri\src\main.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-basic\vanilla\src-tauri\src\lib.rs
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-basic\vanilla\src-tauri\src\main.rs
+=== content of app lib.rs ===
+=== content of app main.rs ===

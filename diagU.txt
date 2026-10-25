@@ -1,0 +1,3 @@
+﻿=== tauri build.rs DEP_TAURI_ANDROID_LIBRARY_PATH ===
+334: println!("cargo:android_library_path={}", lib_path.display());
+=== tauri-build android codegen ===

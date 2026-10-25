@@ -1,0 +1,41 @@
+﻿cargo :    Compiling tauri v2.12.4
+At line:1 char:1
++ cargo check --target aarch64-linux-android --lib --manifest-path 'c:\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (   Compiling tauri v2.12.4:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+   Compiling tauri-macros v2.7.3
+   Compiling tauri-plugin-fs v2.7.1
+   Compiling tauri-plugin-notification v2.7.0
+   Compiling tauri-plugin-shell v2.5.0
+   Compiling tauri-plugin-dialog v2.8.3
+   Compiling tauri-plugin-http v2.8.3
+   Compiling stremioflix v1.0.0 (C:\Users\Kepdns\Desktop\stremioflix\src-tauri)
+error: macro expansion ignores `{` and any tokens following
+  --> C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\wry-0.57.0\src\android\binding.rs:35:50
+   |
+35 |   ($domain:ident, $package:ident, $wry:path) => {{
+   |                                                  ^
+   |
+  ::: src\lib.rs:60:1
+   |
+60 | tauri::android_binding!(com_stremioflix, app, run_app, ::tauri::wry);
+   | -------------------------------------------------------------------- caused by the macro expansion here
+   |
+   = note: the usage of `android_binding!` is likely invalid in item context
+
+error: macro expansion ignores `{` and any tokens following
+  --> C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tao-0.37.1\src\platform_impl\android\ndk_glue.rs:81:106
+   |
+81 |   ($domain:ident, $package:ident, $activity:ident, $on_activity_create:path, $main:ident, $tao:path) => {{
+   |                                                                                                          ^
+   |
+  ::: src\lib.rs:60:1
+   |
+60 | tauri::android_binding!(com_stremioflix, app, run_app, ::tauri::wry);
+   | -------------------------------------------------------------------- caused by the macro expansion here
+   |
+   = note: the usage of `android_binding!` is likely invalid in item context
+
+error: could not compile `stremioflix` (lib) due to 2 previous errors

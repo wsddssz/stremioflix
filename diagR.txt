@@ -1,0 +1,25 @@
+﻿=== rust.rs 1025..1045 ===
+      .inner
+      .as_table()
+      .get("package")?
+      .as_table()?
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+  }
+
+  fn lib_name(&self) -> Option<String> {
+    self
+      .manifest
+      .lock()
+      .unwrap()
+      .inner
+      .as_table()
+      .get("lib")?
+      .as_table()?
+      .get("name")?
+      .as_str()
+      .map(|n| n.to_string())
+
+=== interface/mod.rs 605..640 ===
+

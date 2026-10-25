@@ -1,0 +1,2 @@
+﻿=== tauri-macros files ===
+=== mobile_entry_point ===

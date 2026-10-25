@@ -1,0 +1,118 @@
+﻿=== find android_studio_script.rs ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\mobile\android\android_studio_script.rs
+=== 120-230 ===
+    options.targets.unwrap_or_default().iter(),
+    &detect_target_ok,
+    &env,
+    |target: &Target| {
+      if !installed_targets.contains(&target.triple().into()) {
+        log::info!("Installing target {}", target.triple());
+        target
+          .install()
+          .map_err(|error| Error::CommandFailed {
+            command: "rustup target add".to_string(),
+            error,
+          })
+          .context("failed to install target")?;
+      }
+
+      target
+        .build(
+          &config,
+          &metadata,
+          &env,
+          cli_options.noise_level,
+          true,
+          profile,
+        )
+        .context("failed to build Android app")?;
+
+      if !validated_lib {
+        validated_lib = true;
+
+        let lib_path = config
+          .app()
+          .target_dir(target.triple, profile)
+          .join(config.so_name());
+
+        validate_lib(&lib_path).context("failed to validate library")?;
+      }
+
+      Ok(())
+    },
+  )
+  .map_err(|e| Error::GenericError(e.to_string()))?
+}
+
+fn validate_lib(path: &Path) -> Result<()> {
+  let so_bytes = std::fs::read(path).fs_context("failed to read library", path.to_path_buf())?;
+  let elf = elf::ElfBytes::<elf::endian::AnyEndian>::minimal_parse(&so_bytes)
+    .context("failed to parse ELF")?;
+  let (symbol_table, string_table) = elf
+    .dynamic_symbol_table()
+    .context("failed to read dynsym section")?
+    .context("missing dynsym tables")?;
+
+  let mut symbols = Vec::new();
+  for s in symbol_table.iter() {
+    if let Ok(symbol) = string_table.get(s.st_name as usize) {
+      symbols.push(symbol);
+    }
+  }
+
+  if !symbols.contains(&"Java_app_tauri_plugin_PluginManager_handlePluginResponse") {
+    crate::error::bail!(
+      "Library from {} does not include required runtime symbols. This means you are likely missing the tauri::mobile_entry_point macro usage, see the documentation for more information: https://v2.tauri.app/start/migrate/from-tauri-1",
+      path.display()
+    );
+  }
+
+  Ok(())
+}
+
+fn adb_forward_port(
+  port: u16,
+  env: &cargo_mobile2::android::env::Env,
+  cli_options: &CliOptions,
+) -> Result<()> {
+  let forward = format!("tcp:{port}");
+  log::info!("Forwarding port {port} with adb");
+
+  let mut devices = adb::device_list(env)
+    .unwrap_or_default()
+    .into_iter()
+    .filter(|d| d.status() == ConnectionStatus::Connected)
+    .collect::<Vec<_>>();
+  // if we could not detect any running device, let's wait a few seconds, it might be booting up
+  if devices.is_empty() {
+    log::warn!(
+      "ADB device list is empty, waiting a few seconds to see if there's any booting device..."
+    );
+
+    let max = 5;
+    let mut count = 0;
+    loop {
+      std::thread::sleep(std::time::Duration::from_secs(1));
+
+      devices = adb::device_list(env)
+        .unwrap_or_default()
+        .into_iter()
+        .filter(|d| d.status() == ConnectionStatus::Connected)
+        .collect::<Vec<_>>();
+      if !devices.is_empty() {
+        break;
+      }
+
+      count += 1;
+      if count == max {
+        break;
+      }
+    }
+  }
+
+  let target_device = if let Some(target_device) = &cli_options.target_device {
+    Some((target_device.id.clone(), target_device.name.clone()))
+  } else if devices.len() == 1 {
+    let device = devices.first().unwrap();
+    Some((device.serial_no().to_string(), device.name().to_string()))
+  } else if devices.len() > 1 {

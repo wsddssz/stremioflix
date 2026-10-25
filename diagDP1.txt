@@ -1,0 +1,9 @@
+﻿69: #[macro_export]
+70: macro_rules! ios_plugin_binding {
+140: #[macro_export]
+141: macro_rules! android_binding {
+148: ::tauri::wry::android_binding!($domain, $app_name, $wry);
+150: ::tauri::tao::android_binding!($domain, $app_name, Rust, android_setup, $main, ::tauri::tao);
+307: #[macro_export]
+308: macro_rules! tauri_build_context {
+1112: macro_rules! run_main_thread {

@@ -1,0 +1,11 @@
+﻿=== tauri lib.rs mobile_entry_point ===
+86: pub use tauri_macros::include_image;
+87: #[cfg(mobile)]
+88: pub use tauri_macros::mobile_entry_point;
+89: pub use tauri_macros::{command, generate_handler};
+190: pub use plugin::mobile::{handle_android_plugin_response, send_channel_data};
+298: pub use tauri_macros::generate_context;
+=== tauri-macros mobile_entry_point ===
+DIR: C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-macros-2.7.2
+lib.rs:126: /// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+lib.rs:145: pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {

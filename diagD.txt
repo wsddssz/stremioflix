@@ -1,0 +1,84 @@
+﻿=== templates tree ===
+.\templates
+.\templates\app
+.\templates\mobile
+.\templates\plugin
+.\templates\app\src-tauri
+.\templates\app\src-tauri\capabilities
+.\templates\app\src-tauri\icons
+.\templates\app\src-tauri\src
+.\templates\mobile\android
+.\templates\mobile\ios
+.\templates\mobile\android\app
+.\templates\mobile\android\buildSrc
+.\templates\mobile\android\gradle
+.\templates\mobile\android\app\src
+.\templates\mobile\android\app\src\main
+.\templates\mobile\android\app\src\main\res
+.\templates\mobile\android\app\src\main\res\drawable
+.\templates\mobile\android\app\src\main\res\drawable-v24
+.\templates\mobile\android\app\src\main\res\layout
+.\templates\mobile\android\app\src\main\res\mipmap-hdpi
+.\templates\mobile\android\app\src\main\res\mipmap-mdpi
+.\templates\mobile\android\app\src\main\res\mipmap-xhdpi
+.\templates\mobile\android\app\src\main\res\mipmap-xxhdpi
+.\templates\mobile\android\app\src\main\res\mipmap-xxxhdpi
+.\templates\mobile\android\app\src\main\res\values
+.\templates\mobile\android\app\src\main\res\values-night
+.\templates\mobile\android\app\src\main\res\xml
+.\templates\mobile\android\buildSrc\src
+.\templates\mobile\android\buildSrc\src\main
+.\templates\mobile\android\buildSrc\src\main\kotlin
+.\templates\mobile\android\gradle\wrapper
+.\templates\mobile\ios\Assets.xcassets
+.\templates\mobile\ios\Sources
+.\templates\mobile\ios\{{app.name}}.xcodeproj
+.\templates\mobile\ios\Assets.xcassets\AppIcon.appiconset
+.\templates\mobile\ios\Sources\{{app.name}}
+.\templates\mobile\ios\Sources\{{app.name}}\bindings
+.\templates\mobile\ios\{{app.name}}.xcodeproj\project.xcworkspace
+.\templates\mobile\ios\{{app.name}}.xcodeproj\project.xcworkspace\xcshareddata
+.\templates\plugin\.github
+.\templates\plugin\android
+.\templates\plugin\guest-js
+.\templates\plugin\ios-spm
+.\templates\plugin\ios-xcode
+.\templates\plugin\src
+.\templates\plugin\__example-api
+.\templates\plugin\__example-basic
+.\templates\plugin\.github\workflows
+.\templates\plugin\android\src
+.\templates\plugin\android\src\androidTest
+.\templates\plugin\android\src\main
+.\templates\plugin\android\src\test
+.\templates\plugin\android\src\androidTest\java
+.\templates\plugin\android\src\main\java
+.\templates\plugin\android\src\test\java
+.\templates\plugin\ios-spm\Sources
+.\templates\plugin\ios-spm\Tests
+.\templates\plugin\ios-spm\Tests\PluginTests
+.\templates\plugin\ios-xcode\tauri-plugin-{{ plugin_name }}
+.\templates\plugin\ios-xcode\tauri-plugin-{{ plugin_name }}.xcodeproj
+.\templates\plugin\ios-xcode\tauri-plugin-{{ plugin_name }}.xcodeproj\project.xcworkspace
+.\templates\plugin\ios-xcode\tauri-plugin-{{ plugin_name }}.xcodeproj\project.xcworkspace\xcshareddata
+.\templates\plugin\__example-api\tauri-app
+.\templates\plugin\__example-api\tauri-app\.vscode
+.\templates\plugin\__example-api\tauri-app\public
+.\templates\plugin\__example-api\tauri-app\src
+.\templates\plugin\__example-api\tauri-app\src-tauri
+.\templates\plugin\__example-api\tauri-app\src\lib
+.\templates\plugin\__example-api\tauri-app\src-tauri\capabilities
+.\templates\plugin\__example-api\tauri-app\src-tauri\icons
+.\templates\plugin\__example-api\tauri-app\src-tauri\src
+.\templates\plugin\__example-basic\vanilla
+.\templates\plugin\__example-basic\vanilla\public
+.\templates\plugin\__example-basic\vanilla\src-tauri
+.\templates\plugin\__example-basic\vanilla\src-tauri\capabilities
+.\templates\plugin\__example-basic\vanilla\src-tauri\icons
+.\templates\plugin\__example-basic\vanilla\src-tauri\src
+=== files mentioning mobile_entry_point in cli ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\mobile\android\android_studio_script.rs:181: "Library from {} does not include required runtime symbols. This means you are likely missing the tauri::mobile_entry_point macro usage, see the documentation for more information: https://v2.tauri.app/start/migrate/from-tauri-1",
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\mobile\ios\xcode_script.rs:342: "Library from {} does not include required runtime symbols. This means you are likely missing the tauri::mobile_entry_point macro usage, see the documentation for more information: https://v2.tauri.app/start/migrate/from-tauri-1",
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\app\src-tauri\src\lib.rs:1: #[cfg_attr(mobile, tauri::mobile_entry_point)]
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-api\tauri-app\src-tauri\src\lib.rs:7: #[cfg_attr(mobile, tauri::mobile_entry_point)]
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\templates\plugin\__example-basic\vanilla\src-tauri\src\lib.rs:1: #[cfg_attr(mobile, tauri::mobile_entry_point)]

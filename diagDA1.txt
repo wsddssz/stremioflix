@@ -1,0 +1,10 @@
+﻿=== tauri-cli lib_name usage ===
+mod.rs:41: fn lib_name(&self) -> Option<String>;
+rust.rs:1034: fn lib_name(&self) -> Option<String> {
+mod.rs:617: let lib_name = interface
+mod.rs:619: .lib_name()
+mod.rs:630: lib_name: Some(lib_name),
+android_studio_script.rs:152: .join(config.so_name());
+mod.rs:170: unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+xcode_script.rs:272: let lib_path = out_dir.join(format!("lib{}.a", config.app().lib_name()));
+xcode_script.rs:303: format!("lib{}.a", config.app().lib_name())

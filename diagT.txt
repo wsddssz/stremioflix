@@ -1,0 +1,41 @@
+﻿=== android subcommands ===
+9: device::{ConnectionStatus, Device},
+20: use clap::{Parser, Subcommand};
+36: CliOptions, MIN_DEVICE_MATCH_SCORE, OptionsHandle, Target as MobileTarget, ensure_init, get_app,
+37: init::command as init_command, log_finished, read_options,
+47: mod build;
+49: mod dev;
+51: mod run;
+71: subcommand_required(true),
+75: #[clap(subcommand)]
+80: #[clap(about = "Initialize Android target in the project")]
+81: pub struct InitOptions {
+94: /// but you can use this for more specific use cases such as different build flavors.
+99: #[derive(Subcommand)]
+100: enum Commands {
+101: Init(InitOptions),
+102: Dev(dev::Options),
+103: Build(build::Options),
+104: Run(run::Options),
+106: AndroidStudioScript(android_studio_script::Options),
+112: Commands::Init(options) => init_command(
+119: Commands::Dev(options) => dev::command(options, noise_level)?,
+120: Commands::Build(options) => build::command(options, noise_level).map(|_| ())?,
+121: Commands::Run(options) => run::command(options, noise_level)?,
+122: Commands::AndroidStudioScript(options) => android_studio_script::command(options)?,
+182: "Project directory {} does not exist. Did you update the package name in `Cargo.toml` or the bundle identifier in `tauri.conf.json > identifier`? Save your changes, delete the `gen/android` folder and run `tauri android init` to recreate the Android project.",
+204: let build_gradle_path = config.project_dir().join("app").join("build.gradle.kts");
+205: let build_gradle = std::fs::read_to_string(&build_gradle_path).fs_context(
+206: "failed to read Android Gradle build file",
+207: build_gradle_path.clone(),
+209: let Some(updated_build_gradle) = set_debug_application_id_suffix(
+210: &build_gradle,
+218: "Could not find the Android debug build type in {}. Add a `getByName(\"debug\")` build type or run `tauri android init` to regenerate the Android project.",
+219: build_gradle_path.display()
+223: if updated_build_gradle != build_gradle {
+224: write(&build_gradle_path, updated_build_gradle).fs_context(
+225: "failed to write Android Gradle build file",
+226: build_gradle_path,
+233: fn set_debug_application_id_suffix(build_gradle: &str, suffix: Option<&str>) -> Option<String> {
+234: static BUILD_TYPES_RE: OnceLock<regex::Regex> = OnceLock::new();
+235: static DEBUG_BUILD_TYPE_RE: OnceLock<regex::Regex> = OnceLock::new();

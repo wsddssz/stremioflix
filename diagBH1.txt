@@ -1,0 +1,19 @@
+﻿=== so_name in tauri-cli ===
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\mod.rs:41
+C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-cli-2.12.3\src\interface\rust.rs:1034
+=== interface/mod.rs so_name ===
+41: fn lib_name(&self) -> Option<String>;
+  /// The resolved target triple (`--target`, cargo's `build.target` or the host triple).
+  fn target_triple(&self) -> &str;
+
+  fn get_bundler_settings(
+    &self,
+    options: Options,
+    config: &Config,
+    out_dir: &Path,
+    package_types: Vec<PackageType>,
+    tauri_dir: &Path,
+  ) -> crate::Result<Settings> {
+    let no_default_features = options.args.contains(&"--no-default-features".into());
+    let mut enabled_features = options.features.clone();
+    if !no_default_features {

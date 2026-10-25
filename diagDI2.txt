@@ -1,0 +1,40 @@
+﻿pub use http;
+
+/// A Tauri [`Runtime`] wrapper around wry.
+#[cfg(feature = "wry")]
+#[cfg_attr(docsrs, doc(cfg(feature = "wry")))]
+pub type Wry = tauri_runtime_wry::Wry<EventLoopMessage>;
+/// A Tauri [`RuntimeHandle`] wrapper around wry.
+#[cfg(feature = "wry")]
+#[cfg_attr(docsrs, doc(cfg(feature = "wry")))]
+pub type WryHandle = tauri_runtime_wry::WryHandle<EventLoopMessage>;
+
+#[cfg(all(feature = "wry", target_os = "android"))]
+#[cfg_attr(docsrs, doc(cfg(all(feature = "wry", target_os = "android"))))]
+#[doc(hidden)]
+#[macro_export]
+macro_rules! android_binding {
+  ($domain:ident, $app_name:ident, $main:ident, $wry:path) => {
+    use $wry::{
+      android_setup,
+      prelude::{JClass, JNIEnv, JString},
+    };
+
+    ::tauri::wry::android_binding!($domain, $app_name, $wry);
+
+    ::tauri::tao::android_binding!($domain, $app_name, Rust, android_setup, $main, ::tauri::tao);
+
+    // be careful when renaming this, the `Java_app_tauri_plugin_PluginManager_handlePluginResponse` symbol is checked by the CLI
+    ::tauri::tao::platform::android::prelude::android_fn!(
+      app_tauri,
+      plugin,
+      PluginManager,
+      handlePluginResponse,
+      [i32, JString, JString],
+    );
+    ::tauri::tao::platform::android::prelude::android_fn!(
+      app_tauri,
+      plugin,
+      PluginManager,
+      sendChannelData,
+      [i64, JString],

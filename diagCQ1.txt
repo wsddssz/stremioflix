@@ -1,0 +1,2 @@
+﻿=== android.rs: settings.gradle / build.gradle.kts generation ===
+=== android.rs: symbol checks ===

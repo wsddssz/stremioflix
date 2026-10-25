@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "com.stremioflix.app-debug-37:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "com.stremioflix.app-main-39:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.stremioflix.app-debug-37:/mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "com.stremioflix.app-main-39:/mipmap-anydpi-v26/ic_launcher.xml"
+    },
+    {
+        "merged": "com.stremioflix.app-debug-37:/mipmap-anydpi-v26_ic_launcher_round.xml.flat",
+        "source": "com.stremioflix.app-main-39:/mipmap-anydpi-v26/ic_launcher_round.xml"
+    }
+]

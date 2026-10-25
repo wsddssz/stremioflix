@@ -1,0 +1,75 @@
+﻿  Init(InitOptions),
+  Dev(dev::Options),
+  Build(build::Options),
+  Run(run::Options),
+  #[clap(hide(true))]
+  AndroidStudioScript(android_studio_script::Options),
+}
+
+pub fn command(cli: Cli, verbosity: u8) -> Result<()> {
+  let noise_level = NoiseLevel::from_occurrences(verbosity as u64);
+  match cli.command {
+    Commands::Init(options) => init_command(
+      MobileTarget::Android,
+      options.ci,
+      false,
+      options.skip_targets_install,
+      options.config,
+    )?,
+    Commands::Dev(options) => dev::command(options, noise_level)?,
+    Commands::Build(options) => build::command(options, noise_level).map(|_| ())?,
+    Commands::Run(options) => run::command(options, noise_level)?,
+    Commands::AndroidStudioScript(options) => android_studio_script::command(options)?,
+  }
+
+  Ok(())
+}
+
+pub fn get_config(
+  app: &App,
+  config: &TauriConfig,
+  features: &[String],
+  cli_options: &CliOptions,
+) -> (AndroidConfig, AndroidMetadata) {
+  let mut android_options = cli_options.clone();
+  android_options.features.extend_from_slice(features);
+
+  let raw = RawAndroidConfig {
+    features: Some(android_options.features.clone()),
+    logcat_filter_specs: vec![
+      "RustStdoutStderr".into(),
+      format!(
+        "*:{}",
+        match cli_options.noise_level {
+          NoiseLevel::Polite => FilterLevel::Info,
+          NoiseLevel::LoudAndProud => FilterLevel::Debug,
+          NoiseLevel::FranklyQuitePedantic => FilterLevel::Verbose,
+        }
+        .logcat()
+      ),
+    ],
+    min_sdk_version: Some(config.bundle.android.min_sdk_version),
+    ..Default::default()
+  };
+  let config = AndroidConfig::from_raw(app.clone(), Some(raw)).unwrap();
+
+  let metadata = AndroidMetadata {
+    supported: true,
+    cargo_args: Some(android_options.args),
+    features: Some(android_options.features),
+    ..Default::default()
+  };
+
+  unsafe {
+    set_var(
+      "WRY_ANDROID_PACKAGE",
+      app.android_identifier_escape_kotlin_keyword(),
+    )
+  };
+  unsafe { set_var("TAURI_ANDROID_PACKAGE_UNESCAPED", app.identifier()) };
+  unsafe { set_var("WRY_ANDROID_LIBRARY", app.lib_name()) };
+  unsafe { set_var("TAURI_ANDROID_PROJECT_PATH", config.project_dir()) };
+
+  let src_main_dir = config
+    .project_dir()
+    .join("app/src/main")

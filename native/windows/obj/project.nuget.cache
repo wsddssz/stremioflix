@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "dgSpecHash": "LwGA/SJokLI=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Kepdns\\Desktop\\stremioflix\\native\\windows\\StremioFlix.App.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Kepdns\\.nuget\\packages\\microsoft.web.webview2\\1.0.2903.40\\microsoft.web.webview2.1.0.2903.40.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1603",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "StremioFlix depends on Microsoft.Web.WebView2 (>= 1.0.2903.27) but Microsoft.Web.WebView2 1.0.2903.27 was not found. An approximate best match of Microsoft.Web.WebView2 1.0.2903.40 was resolved.",
+      "libraryId": "Microsoft.Web.WebView2",
+      "targetGraphs": [
+        "net8.0-windows7.0"
+      ]
+    }
+  ]
+}

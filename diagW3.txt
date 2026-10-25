@@ -1,0 +1,6 @@
+﻿\src\migrate\migrations\v1\manifest.rs:98: match lib.entry("crate-type") {
+\src\migrate\migrations\v1\manifest.rs:432: crate-type = ["something"]"#;
+\src\migrate\migrations\v1\manifest.rs:442: .and_then(|l| l.get("crate-type"))
+\src\migrate\migrations\v1\manifest.rs:447: let t = t.as_str().expect("crate-type must be a string");
+\src\migrate\migrations\v1\manifest.rs:454: "missing crate-type: {not_added_crate_types:?}"
+\src\mobile\ios\xcode_script.rs:275: "Library not found at {}. Make sure your Cargo.toml file has a [lib] block with `crate-type = [\"staticlib\", \"cdylib\", \"lib\"]`",

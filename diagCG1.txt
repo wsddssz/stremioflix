@@ -1,0 +1,125 @@
+﻿=== TPL settings.gradle ===
+include ':app'
+{{~#each asset-packs}}
+include ':{{this}}'{{/each}}
+
+apply from: 'tauri.settings.gradle'
+=== TPL app/build.gradle.kts (head 60) ===
+import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("rust")
+    {{~#each android-app-plugins}}
+    id("{{this}}"){{/each}}
+}
+
+val tauriProperties = Properties().apply {
+    val propFile = file("tauri.properties")
+    if (propFile.exists()) {
+        propFile.inputStream().use { load(it) }
+    }
+}
+
+android {
+    compileSdk = 37
+    namespace = "{{app.identifier}}"
+    defaultConfig {
+        manifestPlaceholders["usesCleartextTraffic"] = "false"
+        applicationId = "{{app.identifier}}"
+        minSdk = {{android.min-sdk-version}}
+        targetSdk = 37
+        versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
+        versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
+    }
+    buildTypes {
+        getByName("debug") {
+            {{#if android-debug-application-id-suffix}}
+            applicationIdSuffix = "{{android-debug-application-id-suffix}}"
+            {{/if}}
+            manifestPlaceholders["usesCleartextTraffic"] = "true"
+            isDebuggable = true
+            isJniDebuggable = true
+            isMinifyEnabled = false
+            packaging {
+                {{#each abi-list}}
+                jniLibs.keepDebugSymbols.add("*/{{this}}/*.so")
+                {{/each}}
+            }
+        }
+        getByName("release") {
+            optimization {
+               enable = true
+            }
+            proguardFiles(
+                *fileTree(".") {
+                  include("**/*.pro")
+                  exclude("build/**")
+                }.files.toTypedArray()
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+=== GEN has buildSrc? ===
+True
+=== GEN has gradle/wrapper? ===
+True
+=== GEN gradle.properties ===
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.configuration-cache=true
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+
+# Our old plugin template had a bug that caused missing `consumer-rules.pro` files
+# so we have to disable it for now.
+# See https://github.com/tauri-apps/tauri/pull/15828#issuecomment-5199937796
+android.proguard.failOnMissingFiles=false
+
+# Keeping Gradle 9 compatible with current plugins
+# TODO: Remove this in v3
+android.builtInKotlin=false
+android.newDsl=false
+=== TPL gradle.properties ===
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.configuration-cache=true
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+
+# Our old plugin template had a bug that caused missing `consumer-rules.pro` files
+# so we have to disable it for now.
+# See https://github.com/tauri-apps/tauri/pull/15828#issuecomment-5199937796
+android.proguard.failOnMissingFiles=false
+
+# Keeping Gradle 9 compatible with current plugins
+# TODO: Remove this in v3
+android.builtInKotlin=false
+android.newDsl=false

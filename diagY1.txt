@@ -1,0 +1,22 @@
+﻿=== CARGO_TAURI_ANDROID_PROJECT_PATH / project_dir ===
+check_java_gradle_versions.rs:31: let project_path = std::env::var_os("TAURI_ANDROID_PROJECT_PATH")?;
+mod.rs:171: unsafe { set_var("TAURI_ANDROID_PROJECT_PATH", config.project_dir()) };
+=== android_studio_script ===
+lib.rs:222: // set the verbosity level so subsequent CLI calls (xcode-script, android-studio-script) refer to it
+mod.rs:116: Self::Android => "android-studio-script",
+mod.rs:46: mod android_studio_script;
+mod.rs:106: AndroidStudioScript(android_studio_script::Options),
+mod.rs:122: Commands::AndroidStudioScript(options) => android_studio_script::command(options)?,
+=== Failed to run `cargo build` ===
+error.rs:21: #[error("failed to run command {command}: {error}")]
+lib.rs:359: .with_context(|| format!("failed to run command `{cmdline}`"))?;
+lib.rs:399: .with_context(|| format!("failed to run command `{cmdline}`"))?;
+lib.rs:412: "failed to run command `{cmdline}`: command exited with status code {}",
+npm.rs:157: command: format!("failed to run {self}"),
+npm.rs:198: command: format!("failed to run {self}"),
+rust.rs:1281: .context("failed to run 'cargo metadata' command to get target directory")?
+rust.rs:1323: .context("failed to run 'cargo metadata' command to get workspace directory")?
+dev.rs:412: .context("failed to run Android app")
+run.rs:165: .context("failed to run Android app")
+dev.rs:374: crate::error::bail!("failed to run iOS app: {}", e)
+run.rs:125: .context("failed to run iOS app")

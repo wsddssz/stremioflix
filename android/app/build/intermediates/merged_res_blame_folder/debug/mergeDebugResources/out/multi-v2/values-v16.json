@@ -1,0 +1,20 @@
+{
+    "logs": [
+        {
+            "outputFile": "com.stremioflix.app-mergeDebugResources-35:/values-v16/values-v16.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Kepdns\\.gradle\\caches\\8.9\\transforms\\5af1a06f6d145022fa3e2a1f0f79e1a3\\transformed\\appcompat-1.7.0\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "5",
+                        "endColumns": "12",
+                        "endOffsets": "223"
+                    }
+                }
+            ]
+        }
+    ]
+}

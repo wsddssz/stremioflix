@@ -1,0 +1,76 @@
+﻿=== tauri-macros-2.7.3 lib.rs mobile_entry_point ===
+#[proc_macro_attribute]
+pub fn command(attributes: TokenStream, item: TokenStream) -> TokenStream {
+  command::wrapper(attributes, item)
+}
+
+/// Marks a function as the entry point of a mobile application.
+///
+/// It must be applied to the function that builds and runs your Tauri application on the
+/// library target (`run()` on `src-tauri/src/lib.rs` for apps created by the Tauri CLI),
+/// which is the function the generated Android and iOS projects call on startup.
+///
+/// The canonical usage only applies it on mobile targets, so the same function can be called
+/// by the `main.rs` of the desktop binary:
+///
+/// ```rust,ignore
+/// #[cfg_attr(mobile, tauri::mobile_entry_point)]
+/// pub fn run() {
+///   tauri::Builder::default()
+///     .run(tauri::generate_context!())
+///     .expect("error while running tauri application");
+/// }
+/// ```
+///
+/// The macro generates a `start_app` C symbol (checked by the Tauri CLI) that catches
+/// panics instead of unwinding across the FFI boundary, blocks on the function when it is
+/// `async`, sets up the stdout logger on iOS and the JNI bindings on Android using the
+/// package name derived from the `identifier` in your Tauri configuration.
+///
+/// Because the Android package name is read from environment variables set by `tauri-build`,
+/// your application must have a build script calling [`tauri_build::build`] - otherwise the
+/// macro fails to compile with a `env var not set` error.
+///
+/// [`tauri_build::build`]: https://docs.rs/tauri-build/latest/tauri_build/fn.build.html
+#[proc_macro_attribute]
+pub fn mobile_entry_point(attributes: TokenStream, item: TokenStream) -> TokenStream {
+  mobile::entry_point(attributes, item)
+}
+
+/// Accepts a list of command functions. Creates a handler that allows commands to be called from JS with invoke().
+///
+/// You can optionally annotate the commands with a inner attribute tag `#![plugin(your_plugin_name)]`
+/// for `build > removeUnusedCommands` to work for plugins not defined in a standalone crate like `tauri-plugin-fs`
+///
+/// # Examples
+///
+/// ```rust,ignore
+/// use tauri_macros::{command, generate_handler};
+/// #[command]
+/// fn command_one() {
+///   println!("command one called");
+/// }
+/// #[command]
+/// fn command_two() {
+///   println!("command two called");
+/// }
+/// fn main() {
+///   let _handler = generate_handler![command_one, command_two];
+/// }
+/// ```
+///
+/// # Stability
+///
+/// The output of this macro is managed internally by Tauri,
+/// and should not be accessed directly on normal applications.
+/// It may have breaking changes in the future.
+#[proc_macro]
+pub fn generate_handler(item: TokenStream) -> TokenStream {
+  parse_macro_input!(item as command::Handler).into()
+}
+
+/// Reads a Tauri config file and generates a `::tauri::Context` based on the content.
+///
+/// The context embeds the frontend assets, the application icons, the resolved Access Control List
+/// and the parsed configuration into the binary, and is passed to
+/// `tauri::Builder::run`/`tauri::Builder::build`.

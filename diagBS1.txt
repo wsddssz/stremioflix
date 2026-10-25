@@ -1,0 +1,134 @@
+﻿=== cargo-mobile2 app.rs lib_name ===
+FILE config.rs LINE 256
+
+    pub fn so_name(&self) -> String {
+        format!("lib{}.so", self.app().lib_name())
+    }
+
+    pub fn min_sdk_version(&self) -> u32 {
+        self.min_sdk_version
+    }
+
+FILE cli.rs LINE 524
+                        "{rust_triple}/{}/lib{}.a",
+                        profile.as_str(),
+                        config.app().lib_name()
+                    );
+                    let lib_path = PathBuf::from(format!("../../target/{lib_location}"));
+
+                    if !lib_path.exists() {
+                        return Err(Error::LibNotFound { path: lib_path });
+                    }
+FILE mod.rs LINE 3
+mod common_email_providers;
+pub mod identifier;
+pub mod lib_name;
+pub mod name;
+mod raw;
+
+pub use self::raw::*;
+
+use crate::{
+FILE mod.rs LINE 36
+    #[error("app.name invalid: {0}")]
+    NameInvalid(name::Invalid),
+    #[error("app.lib_name invalid: {0}")]
+    LibNameInvalid(lib_name::Invalid),
+    #[error("`app.identifier` {identifier} isn't valid: {cause}")]
+    IdentifierInvalid {
+        identifier: String,
+        cause: identifier::IdentifierError,
+    },
+FILE mod.rs LINE 37
+    NameInvalid(name::Invalid),
+    #[error("app.lib_name invalid: {0}")]
+    LibNameInvalid(lib_name::Invalid),
+    #[error("`app.identifier` {identifier} isn't valid: {cause}")]
+    IdentifierInvalid {
+        identifier: String,
+        cause: identifier::IdentifierError,
+    },
+    #[error("`app.asset-dir` {asset_dir} couldn't be normalized: {cause}")]
+FILE mod.rs LINE 68
+    root_dir: PathBuf,
+    name: String,
+    lib_name: Option<String>,
+    stylized_name: String,
+    identifier: String,
+    asset_dir: PathBuf,
+    #[serde(skip)]
+    template_pack: Pack,
+    #[serde(skip)]
+FILE mod.rs LINE 98
+        let name = raw.name;
+
+        let lib_name = raw.lib_name;
+
+        let stylized_name = raw.stylized_name.unwrap_or_else(|| name.clone());
+
+        let identifier = {
+            let identifier = raw.identifier;
+            identifier::check_identifier_syntax(&identifier)
+FILE mod.rs LINE 154
+            root_dir,
+            name,
+            lib_name,
+            stylized_name,
+            identifier,
+            asset_dir,
+            template_pack,
+            target_dir_resolver: None,
+        })
+FILE mod.rs LINE 204
+    }
+
+    pub fn lib_name(&self) -> String {
+        self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+        &self.stylized_name
+    }
+FILE mod.rs LINE 205
+
+    pub fn lib_name(&self) -> String {
+        self.lib_name.clone().unwrap_or_else(|| self.name_snake())
+    }
+
+    pub fn stylized_name(&self) -> &str {
+        &self.stylized_name
+    }
+
+FILE raw.rs LINE 159
+pub struct Raw {
+    pub name: String,
+    pub lib_name: Option<String>,
+    pub stylized_name: Option<String>,
+    pub identifier: String,
+    pub asset_dir: Option<String>,
+    pub template_pack: Option<String>,
+}
+
+FILE raw.rs LINE 171
+        Ok(Self {
+            name: defaults.name.ok_or(DetectError::NameNotDetected)?,
+            lib_name: None,
+            stylized_name: Some(defaults.stylized_name),
+            identifier: defaults.identifier,
+            asset_dir: None,
+            template_pack: Some(super::DEFAULT_TEMPLATE_PACK.to_owned())
+                .filter(|pack| pack != super::IMPLIED_TEMPLATE_PACK),
+        })
+FILE raw.rs LINE 189
+        Ok(Self {
+            name,
+            lib_name: None,
+            stylized_name: Some(stylized_name),
+            identifier,
+            asset_dir: None,
+            template_pack,
+        })
+    }
+=== tauri-cli sets TAURI_ANDROID_PROJECT_PATH ===
+check_java_gradle_versions.rs:31: let project_path = std::env::var_os("TAURI_ANDROID_PROJECT_PATH")?;
+mod.rs:171: unsafe { set_var("TAURI_ANDROID_PROJECT_PATH", config.project_dir()) };

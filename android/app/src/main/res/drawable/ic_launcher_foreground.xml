@@ -1,0 +1,16 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Netflix-red play mark centred inside the adaptive-icon safe zone -->
+    <path
+        android:fillColor="#E50914"
+        android:pathData="M42,34 L76,54 L42,74 Z" />
+    <path
+        android:strokeColor="#E50914"
+        android:strokeWidth="4"
+        android:strokeLineCap="round"
+        android:pathData="M30,78 A34,34 0 0 0 78,78"
+        android:fillColor="#00000000" />
+</vector>

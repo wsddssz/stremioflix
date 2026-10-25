@@ -1,0 +1,1 @@
+﻿98: self.app_name = self.app_name.map(|s| Ok(Some(s))).unwrap_or_else(|| {

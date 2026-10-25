@@ -1,0 +1,2 @@
+﻿=== cargo-mobile2 android/mod.rs: lib_name / --lib ===
+=== cargo-mobile2 lib.rs lib_name ===

@@ -1,0 +1,7 @@
+﻿=== tauri build.rs: rustc-cfg mobile ===
+246: println!("cargo:rustc-cfg={alias}");
+=== tauri-build: rustc-cfg mobile ===
+DIR: C:\Users\Kepdns\.cargo\registry\src\index.crates.io-1949cf8c6b5b557f\tauri-build-2.7.2
+lib.rs:84: //! [cfg aliases]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-cfgkeyvalue
+lib.rs:308: println!("cargo:rustc-cfg={alias}");
+lib.rs:606: /// [cfg alias]: https://doc.rust-lang.org/cargo/reference/build-scripts.html#cargorustc-cfgkeyvalue

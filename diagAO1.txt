@@ -1,0 +1,16 @@
+﻿\.cargo-ok
+\.cargo_vcs_info.json
+\Cargo.lock
+\Cargo.toml
+\Cargo.toml.orig
+\LICENSE-APACHE-2.0
+\LICENSE-MIT
+\README.md
+\src\acl.rs
+\src\lib.rs
+\src\manifest.rs
+\src\mobile.rs
+\src\static_vcruntime.rs
+\src\windows-app-manifest.xml
+\src\codegen\context.rs
+\src\codegen\mod.rs

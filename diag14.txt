@@ -1,0 +1,130 @@
+﻿=== gen/android tree (dirs) ===
+.\.gradle
+.\app
+.\build
+.\buildSrc
+.\gradle
+.\.gradle\9.6.1
+.\.gradle\buildOutputCleanup
+.\.gradle\configuration-cache
+.\.gradle\noVersion
+.\.gradle\vcs-1
+.\.gradle\9.6.1\checksums
+.\.gradle\9.6.1\executionHistory
+.\.gradle\9.6.1\expanded
+.\.gradle\9.6.1\fileChanges
+.\.gradle\9.6.1\fileHashes
+.\.gradle\9.6.1\kotlin-dsl-plugin-entries
+.\.gradle\9.6.1\vcsMetadata
+.\.gradle\configuration-cache\23db13e0-7c3e-4ce1-bed1-09b6a6639e8d
+.\.gradle\configuration-cache\52f033c8-e077-4fd2-9359-aae97ccec07e
+.\.gradle\configuration-cache\8760a146-2d20-43e8-b503-14ca600d44bb
+.\.gradle\configuration-cache\9dv6t22a76oqro7i0s6dqr331
+.\.gradle\configuration-cache\9edea9c3-c762-4e74-a48d-947d38c72610
+.\.gradle\configuration-cache\fbca1b7d-27f2-4faa-a9ac-6bb3ace688c5
+.\app\build
+.\app\src
+.\app\build\generated
+.\app\build\intermediates
+.\app\build\kotlinToolingMetadata
+.\app\build\outputs
+.\app\src\main
+.\build\reports
+.\build\reports\configuration-cache
+.\buildSrc\.gradle
+.\buildSrc\.kotlin
+.\buildSrc\build
+.\buildSrc\src
+.\buildSrc\.gradle\9.6.1
+.\buildSrc\.gradle\buildOutputCleanup
+.\buildSrc\.kotlin\sessions
+.\buildSrc\build\classes
+.\buildSrc\build\kotlin
+.\buildSrc\build\libs
+.\buildSrc\build\pluginDescriptors
+.\buildSrc\build\resources
+.\buildSrc\build\tmp
+.\buildSrc\src\main
+.\gradle\wrapper
+=== app/build.gradle.kts full ===
+import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("rust")
+}
+
+val tauriProperties = Properties().apply {
+    val propFile = file("tauri.properties")
+    if (propFile.exists()) {
+        propFile.inputStream().use { load(it) }
+    }
+}
+
+android {
+    compileSdk = 37
+    namespace = "com.stremioflix.app"
+    defaultConfig {
+        manifestPlaceholders["usesCleartextTraffic"] = "false"
+        applicationId = "com.stremioflix.app"
+        minSdk = 24
+        targetSdk = 37
+        versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
+        versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
+    }
+    buildTypes {
+        getByName("debug") {
+            manifestPlaceholders["usesCleartextTraffic"] = "true"
+            isDebuggable = true
+            isJniDebuggable = true
+            isMinifyEnabled = false
+            packaging {
+                jniLibs.keepDebugSymbols.add("*/arm64-v8a/*.so")
+                jniLibs.keepDebugSymbols.add("*/armeabi-v7a/*.so")
+                jniLibs.keepDebugSymbols.add("*/x86/*.so")
+                jniLibs.keepDebugSymbols.add("*/x86_64/*.so")
+            }
+        }
+        getByName("release") {
+            optimization {
+               enable = true
+            }
+            proguardFiles(
+                *fileTree(".") {
+                  include("**/*.pro")
+                  exclude("build/**")
+                }.files.toTypedArray()
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+    }
+}
+
+rust {
+    rootDirRel = "../../../"
+}
+
+dependencies {
+    implementation("androidx.webkit:webkit:1.14.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-process:2.10.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+}

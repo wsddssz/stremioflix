@@ -1,0 +1,7 @@
+﻿cargo : error: no library targets found in package `stremioflix`
+At line:1 char:53
++ ... src-tauri'; cargo build --package stremioflix --target aarch64-linux- ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: no libra...e `stremioflix`:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 

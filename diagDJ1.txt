@@ -1,0 +1,519 @@
+﻿===== settings.gradle =====
+--- TEMPLATE ---
+include ':app'
+{{~#each asset-packs}}
+include ':{{this}}'{{/each}}
+
+apply from: 'tauri.settings.gradle'
+--- PROJECT ---
+include ':app'
+===== app\build.gradle.kts =====
+--- TEMPLATE ---
+import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("rust")
+    {{~#each android-app-plugins}}
+    id("{{this}}"){{/each}}
+}
+
+val tauriProperties = Properties().apply {
+    val propFile = file("tauri.properties")
+    if (propFile.exists()) {
+        propFile.inputStream().use { load(it) }
+    }
+}
+
+android {
+    compileSdk = 37
+    namespace = "{{app.identifier}}"
+    defaultConfig {
+        manifestPlaceholders["usesCleartextTraffic"] = "false"
+        applicationId = "{{app.identifier}}"
+        minSdk = {{android.min-sdk-version}}
+        targetSdk = 37
+        versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
+        versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
+    }
+    buildTypes {
+        getByName("debug") {
+            {{#if android-debug-application-id-suffix}}
+            applicationIdSuffix = "{{android-debug-application-id-suffix}}"
+            {{/if}}
+            manifestPlaceholders["usesCleartextTraffic"] = "true"
+            isDebuggable = true
+            isJniDebuggable = true
+            isMinifyEnabled = false
+            packaging {
+                {{#each abi-list}}
+                jniLibs.keepDebugSymbols.add("*/{{this}}/*.so")
+                {{/each}}
+            }
+        }
+        getByName("release") {
+            optimization {
+               enable = true
+            }
+            proguardFiles(
+                *fileTree(".") {
+                  include("**/*.pro")
+                  exclude("build/**")
+                }.files.toTypedArray()
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+    }
+}
+
+rust {
+    rootDirRel = "{{root-dir-rel}}"
+}
+
+dependencies {
+    {{~#each android-app-dependencies-platform}}
+    implementation(platform("{{this}}")){{/each}}
+    {{~#each android-app-dependencies}}
+    implementation("{{this}}"){{/each}}
+    implementation("androidx.webkit:webkit:1.14.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-process:2.10.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+}
+
+apply(from = file("tauri.build.gradle.kts"))
+--- PROJECT ---
+import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("rust")
+}
+
+val tauriProperties = Properties().apply {
+    val propFile = file("tauri.properties")
+    if (propFile.exists()) {
+        propFile.inputStream().use { load(it) }
+    }
+}
+
+android {
+    compileSdk = 37
+    namespace = "com.stremioflix.app"
+    defaultConfig {
+        manifestPlaceholders["usesCleartextTraffic"] = "false"
+        applicationId = "com.stremioflix.app"
+        minSdk = 24
+        targetSdk = 37
+        versionCode = tauriProperties.getProperty("tauri.android.versionCode", "1").toInt()
+        versionName = tauriProperties.getProperty("tauri.android.versionName", "1.0")
+    }
+    buildTypes {
+        getByName("debug") {
+            manifestPlaceholders["usesCleartextTraffic"] = "true"
+            isDebuggable = true
+            isJniDebuggable = true
+            isMinifyEnabled = false
+            packaging {
+                jniLibs.keepDebugSymbols.add("*/arm64-v8a/*.so")
+                jniLibs.keepDebugSymbols.add("*/armeabi-v7a/*.so")
+                jniLibs.keepDebugSymbols.add("*/x86/*.so")
+                jniLibs.keepDebugSymbols.add("*/x86_64/*.so")
+            }
+        }
+        getByName("release") {
+            optimization {
+               enable = true
+            }
+            proguardFiles(
+                *fileTree(".") {
+                  include("**/*.pro")
+                  exclude("build/**")
+                }.files.toTypedArray()
+            )
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_1_8
+    }
+}
+
+rust {
+    rootDirRel = "../../../"
+}
+
+dependencies {
+    implementation("androidx.webkit:webkit:1.14.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.lifecycle:lifecycle-process:2.10.0")
+    testImplementation("junit:junit:4.13.2")
+    androidTestImplementation("androidx.test.ext:junit:1.1.4")
+    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+}
+===== gradle.properties =====
+--- TEMPLATE ---
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.configuration-cache=true
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+
+# Our old plugin template had a bug that caused missing `consumer-rules.pro` files
+# so we have to disable it for now.
+# See https://github.com/tauri-apps/tauri/pull/15828#issuecomment-5199937796
+android.proguard.failOnMissingFiles=false
+
+# Keeping Gradle 9 compatible with current plugins
+# TODO: Remove this in v3
+android.builtInKotlin=false
+android.newDsl=false
+--- PROJECT ---
+# Project-wide Gradle settings.
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+# Specifies the JVM arguments used for the daemon process.
+# The setting is particularly useful for tweaking memory settings.
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+org.gradle.configuration-cache=true
+# When configured, Gradle will run in incubating parallel mode.
+# This option should only be used with decoupled projects. More details, visit
+# http://www.gradle.org/docs/current/userguide/multi_project_builds.html#sec:decoupled_projects
+# org.gradle.parallel=true
+# Kotlin code style for this project: "official" or "obsolete":
+kotlin.code.style=official
+
+# Our old plugin template had a bug that caused missing `consumer-rules.pro` files
+# so we have to disable it for now.
+# See https://github.com/tauri-apps/tauri/pull/15828#issuecomment-5199937796
+android.proguard.failOnMissingFiles=false
+
+# Keeping Gradle 9 compatible with current plugins
+# TODO: Remove this in v3
+android.builtInKotlin=false
+android.newDsl=false
+===== build.gradle.kts =====
+--- TEMPLATE ---
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:9.3.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.10")
+        {{~#each android-project-dependencies}}
+        classpath("{{this}}"){{/each}}
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+tasks.register("clean").configure {
+    delete("build")
+}
+
+--- PROJECT ---
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("com.android.tools.build:gradle:9.3.1")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.10")
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+tasks.register("clean").configure {
+    delete("build")
+}
+
+===== buildSrc\build.gradle.kts =====
+--- TEMPLATE ---
+plugins {
+    `kotlin-dsl`
+}
+
+gradlePlugin {
+    plugins {
+        create("pluginsForCoolKids") {
+            id = "rust"
+            implementationClass = "RustPlugin"
+        }
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly(gradleApi())
+    implementation("com.android.tools.build:gradle:9.3.1")
+}
+
+--- PROJECT ---
+plugins {
+    `kotlin-dsl`
+}
+
+gradlePlugin {
+    plugins {
+        create("pluginsForCoolKids") {
+            id = "rust"
+            implementationClass = "RustPlugin"
+        }
+    }
+}
+
+repositories {
+    google()
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly(gradleApi())
+    implementation("com.android.tools.build:gradle:9.3.1")
+}
+
+===== buildSrc\src\main\kotlin\BuildTask.kt =====
+--- TEMPLATE ---
+import java.io.File
+import org.apache.tools.ant.taskdefs.condition.Os
+import org.gradle.api.DefaultTask
+import org.gradle.api.GradleException
+import org.gradle.api.logging.LogLevel
+import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.TaskAction
+import javax.inject.Inject
+import org.gradle.process.ExecOperations
+
+abstract class BuildTask : DefaultTask() {
+    @get:Inject
+    abstract val execOperations: ExecOperations
+
+    @Input
+    var rootDirRel: String? = null
+    @Input
+    var projectDir: String? = null
+    @Input
+    var target: String? = null
+    @Input
+    var release: Boolean? = null
+
+    @TaskAction
+    fun assemble() {
+        val executable = """{{tauri-binary}}""";
+        try {
+            runTauriCli(executable)
+        } catch (e: Exception) {
+            if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+                // Try different Windows-specific extensions
+                val fallbacks = listOf(
+                    "$executable.exe",
+                    "$executable.cmd",
+                    "$executable.bat",
+                )
+
+                var lastException: Exception = e
+                for (fallback in fallbacks) {
+                    try {
+                        runTauriCli(fallback)
+                        return
+                    } catch (fallbackException: Exception) {
+                        lastException = fallbackException
+                    }
+                }
+                throw lastException
+            } else {
+                throw e;
+            }
+        }
+    }
+
+    fun runTauriCli(executable: String) {
+        val rootDirRel = rootDirRel ?: throw GradleException("rootDirRel cannot be null")
+        val target = target ?: throw GradleException("target cannot be null")
+        val release = release ?: throw GradleException("release cannot be null")
+        val args = listOf({{quote-and-join tauri-binary-args}});
+
+        execOperations.exec {
+            workingDir(File(projectDir, rootDirRel))
+            executable(executable)
+            args(args)
+            if (logger.isEnabled(LogLevel.DEBUG)) {
+                args("-vv")
+            } else if (logger.isEnabled(LogLevel.INFO)) {
+                args("-v")
+            }
+            if (release) {
+                args("--release")
+            }
+            args(listOf("--target", target))
+        }.assertNormalExitValue()
+    }
+}
+--- PROJECT: MISSING ---
+===== buildSrc\src\main\kotlin\RustPlugin.kt =====
+--- TEMPLATE ---
+import com.android.build.api.dsl.ApplicationExtension
+import org.gradle.api.DefaultTask
+import org.gradle.api.Plugin
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.get
+
+const val TASK_GROUP = "rust"
+
+open class Config {
+    lateinit var rootDirRel: String
+}
+
+open class RustPlugin : Plugin<Project> {
+    private lateinit var config: Config
+
+    override fun apply(project: Project) = with(project) {
+        config = extensions.create("rust", Config::class.java)
+
+        val defaultAbiList = listOf({{quote-and-join abi-list}});
+        val abiList = (findProperty("abiList") as? String)?.split(',') ?: defaultAbiList
+
+        val defaultArchList = listOf({{quote-and-join arch-list}});
+        val archList = (findProperty("archList") as? String)?.split(',') ?: defaultArchList
+
+        val targetsList = (findProperty("targetList") as? String)?.split(',') ?: listOf({{quote-and-join target-list}})
+
+        extensions.configure<ApplicationExtension> {
+            @Suppress("UnstableApiUsage")
+            flavorDimensions.add("abi")
+            productFlavors {
+                create("universal") {
+                    dimension = "abi"
+                    ndk {
+                        abiFilters += abiList
+                    }
+                }
+                defaultArchList.forEachIndexed { index, arch ->
+                    create(arch) {
+                        dimension = "abi"
+                        ndk {
+                            abiFilters.add(defaultAbiList[index])
+                        }
+                    }
+                }
+            }
+        }
+
+        afterEvaluate {
+            for (profile in listOf("debug", "release")) {
+                val profileCapitalized = profile.replaceFirstChar { it.uppercase() }
+                val buildTask = tasks.maybeCreate(
+                    "rustBuildUniversal$profileCapitalized",
+                    DefaultTask::class.java
+                ).apply {
+                    group = TASK_GROUP
+                    description = "Build dynamic library in $profile mode for all targets"
+                }
+
+                tasks["mergeUniversal${profileCapitalized}JniLibFolders"].dependsOn(buildTask)
+
+                for (targetPair in targetsList.withIndex()) {
+                    val targetName = targetPair.value
+                    val targetArch = archList[targetPair.index]
+                    val targetArchCapitalized = targetArch.replaceFirstChar { it.uppercase() }
+                    val targetBuildTask = project.tasks.register(
+                        "rustBuild$targetArchCapitalized$profileCapitalized",
+                        BuildTask::class.java
+                    ) {
+                        group = TASK_GROUP
+                        description = "Build dynamic library in $profile mode for $targetArch"
+                        rootDirRel = config.rootDirRel
+                        projectDir = project.projectDir.path
+                        target = targetName
+                        release = profile == "release"
+                    }
+
+                    buildTask.dependsOn(targetBuildTask)
+                    tasks["merge$targetArchCapitalized${profileCapitalized}JniLibFolders"].dependsOn(
+                        targetBuildTask
+                    )
+                }
+            }
+        }
+    }
+}
+--- PROJECT: MISSING ---
+===== gradle\wrapper\gradle-wrapper.properties =====
+--- TEMPLATE ---
+#Tue May 10 19:22:52 CST 2022
+distributionBase=GRADLE_USER_HOME
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.6.1-bin.zip
+distributionPath=wrapper/dists
+zipStorePath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME
+--- PROJECT ---
+#Tue May 10 19:22:52 CST 2022
+distributionBase=GRADLE_USER_HOME
+distributionUrl=https\://services.gradle.org/distributions/gradle-9.6.1-bin.zip
+distributionPath=wrapper/dists
+zipStorePath=wrapper/dists
+zipStoreBase=GRADLE_USER_HOME

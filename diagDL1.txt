@@ -1,0 +1,10 @@
+﻿5: use cargo_mobile2::{
+158: cargo_args: Some(android_options.args),
+182: "Project directory {} does not exist. Did you update the package name in `Cargo.toml` or the bundle identifier in `tauri.conf.json > identifier`? Save your changes, delete the `gen/android` folder and run `tauri android init` to recreate the Android project.",
+546: cargo_mobile2::android::env::Env::from_env(env).context("failed to load Android environment")
+686: let status = Command::new(&sdk_manager_path)
+786: let status = Command::new(&sdk_manager_path)
+1127: fn configure_cargo(env: &mut Env, config: &AndroidConfig) -> Result<()> {
+1130: .generate_cargo_config(config, env)
+1135: format!("CARGO_TARGET_{target_var_name}_LINKER"),
+1140: format!("CARGO_TARGET_{target_var_name}_RUSTFLAGS"),

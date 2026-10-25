@@ -1,0 +1,12 @@
+﻿=== src-tauri Cargo.lock versions ===
+name = "tao" version = "0.37.1"
+name = "tauri" version = "2.12.4"
+name = "tauri-build" version = "2.7.3"
+name = "tauri-macros" version = "2.7.3"
+name = "tauri-plugin-dialog" version = "2.8.3"
+name = "tauri-plugin-fs" version = "2.7.1"
+name = "tauri-plugin-http" version = "2.8.3"
+name = "tauri-plugin-notification" version = "2.7.0"
+name = "tauri-plugin-shell" version = "2.5.0"
+name = "tauri-utils" version = "2.10.2"
+name = "wry" version = "0.57.0"

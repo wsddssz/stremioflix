@@ -1,0 +1,29 @@
+﻿12: //! - defines the `dev`, `desktop` and `mobile` [cfg aliases] used across the Tauri crates;
+25: //! - on Android, generates the Gradle files of the mobile project and updates the Android
+116: mod mobile;
+659: let mobile = target_os == "ios" || target_os == "android";
+660: cfg_alias("desktop", !mobile);
+661: cfg_alias("mobile", mobile);
+707: mobile::generate_gradle_files(project_dir)?;
+711: mobile::update_android_manifest_file_associations(associations)?;
+=== ctx 295-315 ===
+fn target_dir_from_out_dir(out_dir: &Path) -> Option<&Path> {
+  out_dir
+    .ancestors()
+    .find(|path| path.file_name() == Some(OsStr::new("build")))
+    .and_then(|build_dir| build_dir.parent())
+}
+
+// creates a cfg alias if `has_feature` is true.
+// `alias` must be a snake case string.
+fn cfg_alias(alias: &str, has_feature: bool) {
+  println!("cargo:rustc-check-cfg=cfg({alias})");
+  if has_feature {
+    println!("cargo:rustc-cfg={alias}");
+  }
+}
+
+/// Attributes used on Windows.
+#[allow(dead_code)]
+#[derive(Debug)]
+pub struct WindowsAttributes {
